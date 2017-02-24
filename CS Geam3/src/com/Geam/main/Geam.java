@@ -8,6 +8,13 @@ import java.util.Random;
 public class Geam extends Canvas implements Runnable {
 
 	/**
+	 * Comment a greeting and your name to make sure it works
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
