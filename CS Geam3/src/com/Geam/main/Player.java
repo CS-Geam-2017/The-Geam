@@ -82,7 +82,7 @@ public class Player extends GeamObject {
 				}
 				else {
 					Width2 = 42;
-					Height2 = 98;
+					Height2 = 100;
 				}
 				moved=true;
 			}
