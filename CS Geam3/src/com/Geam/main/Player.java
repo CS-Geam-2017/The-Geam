@@ -35,7 +35,7 @@ public class Player extends GeamObject {
 		if(id == ID.Player){
 			if (moved==false) {
 				try {
-					img = ImageIO.read(new File("\\\\ph-fss1\\Students\\S31539\\Desktop\\CSGeamPics\\PersonWalkR0.png"));
+					img = ImageIO.read(new File("PersonWalkR0.png"));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class Player extends GeamObject {
 			}
 			if (KeyInput.upKey==true) {
 				try {
-					img = ImageIO.read(new File("\\\\ph-fss1\\Students\\S31539\\Desktop\\CSGeamPics\\PersonWalkU.png"));
+					img = ImageIO.read(new File("PersonWalkU.png"));
 				} catch (IOException ex) {
 					ex.printStackTrace();
 				}
@@ -51,7 +51,7 @@ public class Player extends GeamObject {
 			}
 			if (KeyInput.downKey==true) {
 				try {
-					img = ImageIO.read(new File("\\\\ph-fss1\\Students\\S31539\\Desktop\\CSGeamPics\\PersonWalkD.png"));
+					img = ImageIO.read(new File("PersonWalkD.png"));
 				} catch (IOException ex) {
 					ex.printStackTrace();
 				}
@@ -59,7 +59,7 @@ public class Player extends GeamObject {
 			}
 			if (KeyInput.leftKey==true) {
 				try {
-					img = ImageIO.read(new File("\\\\ph-fss1\\Students\\S31539\\Desktop\\CSGeamPics\\PersonWalkL.png"));
+					img = ImageIO.read(new File("PersonWalkL.png"));
 				} catch (IOException ex) {
 					ex.printStackTrace();
 				}
@@ -67,7 +67,7 @@ public class Player extends GeamObject {
 			}
 			if (KeyInput.rightKey==true) {
 				try {
-					img = ImageIO.read(new File("\\\\ph-fss1\\Students\\S31539\\Desktop\\CSGeamPics\\PersonWalkR"+walkAn+".png"));
+					img = ImageIO.read(new File("PersonWalkR"+walkAn+".png"));
 				} catch (IOException ex) {
 					ex.printStackTrace();
 				}
