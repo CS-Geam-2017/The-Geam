@@ -15,7 +15,7 @@ public class Geam extends Canvas implements Runnable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final int WIDTH = 1370, HEIGHT = WIDTH / 12*9;
+	public static final int WIDTH = 1366, HEIGHT = 705;
 	//Reg - WIDTH = 640, HEIGHT = WIDTH / 12*9
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
 	
@@ -46,6 +46,9 @@ public class Geam extends Canvas implements Runnable {
 		
 		handler.addObject(new Player(100, 100, ID.Player));
 		handler.addObject(new Player(100+64, 100, ID.Player2));
+		for (int i = 0 ; i < 10 ; i++) {
+			handler.addObject(new BasicEnemy(r.nextInt(HEIGHT), r.nextInt(WIDTH), ID.BasicEnemy));
+		}
 	}
 	
 	public synchronized void start() {
