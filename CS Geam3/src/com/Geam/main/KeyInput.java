@@ -1,5 +1,6 @@
 package com.Geam.main;
 
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -25,7 +26,6 @@ public class KeyInput extends KeyAdapter {
 		for(int i = 0; i < Handler.object.size(); i++){
 			
 			GeamObject tempObject = Handler.object.get(i);
-			
 			if(tempObject.getID() == ID.Player){
 				//key events for player 1;
 				if(key == KeyEvent.VK_W && upKey==false) {
@@ -37,11 +37,11 @@ public class KeyInput extends KeyAdapter {
 					downKey=true;
 				}
 				if(key == KeyEvent.VK_A && leftKey==false) {
-					tempObject.setSpeedX(tempObject.getspeedX()-5);
+					tempObject.setSpeedX(tempObject.getSpeedX()-5);
 					leftKey=true;
 				}
 				if(key == KeyEvent.VK_D && rightKey==false) {
-					tempObject.setSpeedX(tempObject.getspeedX()+3);
+					tempObject.setSpeedX(tempObject.getSpeedX()+3);
 					rightKey=true;
 				}
 			}
@@ -56,11 +56,11 @@ public class KeyInput extends KeyAdapter {
 					downKey2=true;
 				}
 				if(key == KeyEvent.VK_LEFT && leftKey2==false) {
-					tempObject.setSpeedX(tempObject.getspeedX()-5);
+					tempObject.setSpeedX(tempObject.getSpeedX()-5);
 					leftKey2=true;
 				}
 				if(key == KeyEvent.VK_RIGHT && rightKey2==false) {
-					tempObject.setSpeedX(tempObject.getspeedX()+5);
+					tempObject.setSpeedX(tempObject.getSpeedX()+5);
 					rightKey2=true;
 				}
 			}
@@ -76,7 +76,7 @@ public class KeyInput extends KeyAdapter {
 			if(tempObject.getID() == ID.Player2) {
 				//key events for player 2
 				if(key == KeyEvent.VK_LEFT) {
-					tempObject.setSpeedX(tempObject.getspeedX()+5);
+					tempObject.setSpeedX(tempObject.getSpeedX()+5);
 					leftKey2=false;
 				}
 				if(key == KeyEvent.VK_UP) {
@@ -84,7 +84,7 @@ public class KeyInput extends KeyAdapter {
 					upKey2=false;
 				}
 				if(key == KeyEvent.VK_RIGHT) {
-					tempObject.setSpeedX(tempObject.getspeedX()-5);
+					tempObject.setSpeedX(tempObject.getSpeedX()-5);
 					rightKey2=false;
 				}
 				if(key == KeyEvent.VK_DOWN) {
@@ -104,11 +104,11 @@ public class KeyInput extends KeyAdapter {
 					downKey=false;
 				}
 				if(key == KeyEvent.VK_A) {
-					tempObject.setSpeedX(tempObject.getspeedX()+5);
+					tempObject.setSpeedX(tempObject.getSpeedX()+5);
 					leftKey=false;
 				}
 				if(key == KeyEvent.VK_D) {
-					tempObject.setSpeedX(tempObject.getspeedX()-3);
+					tempObject.setSpeedX(tempObject.getSpeedX()-3);
 					rightKey=false;
 				}
 			}
