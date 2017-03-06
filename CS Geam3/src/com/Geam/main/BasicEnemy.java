@@ -27,14 +27,17 @@ public class BasicEnemy extends GeamObject {
 		x+= speedX;
 		y+= speedY;
 		
-		if(y <= 0 || y >= Geam.HEIGHT-35) speedY *= -1;
-		if(x <= 0 || x >= Geam.WIDTH-35) speedX *= -1;
+		if(y <= 0 || y >= Geam.HEIGHT-50) speedY *= -1;
+		if(x <= 0 || x >= Geam.WIDTH-50) speedX *= -1;
 	}
 
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
-		g.setColor(Color.red);
+		int a = r.nextInt(3);
+		if (a == 1) g.setColor(Color.red);
+		else if (a == 2) g.setColor(Color.blue);
+		else g.setColor(Color.green);
 		g.fillOval(x, y, 50, 50);
 	}
 	

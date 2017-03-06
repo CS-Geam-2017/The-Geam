@@ -48,7 +48,7 @@ public class KeyInput extends KeyAdapter {
 			if(tempObject.getID() == ID.Player2) {
 				//key events for player 2
 				if(key == KeyEvent.VK_UP && upKey2==false) {
-					tempObject.setSpeedY(tempObject.getSpeedY()-5);
+					tempObject.setSpeedY(tempObject.getSpeedY()-3);
 					upKey2=true;
 				}
 				if(key == KeyEvent.VK_DOWN && downKey2==false) {
