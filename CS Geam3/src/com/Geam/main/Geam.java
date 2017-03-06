@@ -47,8 +47,8 @@ public class Geam extends Canvas implements Runnable {
 		
 		handler.addObject(new Player(100, 100, ID.Player));
 		handler.addObject(new Player(100+64, 100, ID.Player2));
-		for (int i = 0 ; i < 10 ; i++) {
-			handler.addObject(new BasicEnemy(r.nextInt(HEIGHT), r.nextInt(WIDTH), ID.BasicEnemy));
+		for (int i = 0 ; i < 100 ; i++) {
+			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
 		}
 	}
 	
