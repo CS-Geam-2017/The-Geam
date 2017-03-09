@@ -28,7 +28,6 @@ public class BasicEnemy extends GeamObject {
 		return new Rectangle(x,y,Width,Height);
 	}
 
-	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
 		x+= speedX;
@@ -38,7 +37,6 @@ public class BasicEnemy extends GeamObject {
 		if(x <= 0 || x >= Geam.WIDTH-Width) speedX *= -1;
 	}
 
-	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		g.setColor(Color.red);

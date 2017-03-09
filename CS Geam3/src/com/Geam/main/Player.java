@@ -56,7 +56,6 @@ public class Player extends GeamObject {
 	}
 
 	public void render(Graphics g) {
-		System.out.println(moved);
 
 			if (moved==false) {
 				try {
