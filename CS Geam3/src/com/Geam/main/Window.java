@@ -7,8 +7,6 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import org.ietf.jgss.GSSName;
-
 public class Window extends Canvas{
 
 	/**

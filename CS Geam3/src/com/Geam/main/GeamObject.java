@@ -2,6 +2,7 @@ package com.Geam.main;
 
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 /**
  * @author S59587
@@ -21,6 +22,7 @@ public abstract class GeamObject {
 	
 	public abstract void tick();
 	public abstract void render(Graphics g);
+	public abstract Rectangle getBounds();
 	
 	public void setX(int x){
 		this.x = x;

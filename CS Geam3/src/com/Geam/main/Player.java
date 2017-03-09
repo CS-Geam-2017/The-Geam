@@ -2,28 +2,33 @@ package com.Geam.main;
 
 import java.io.File;
 import java.io.IOException;
-import java.awt.Color;
 import java.awt.Image;
-import javax.swing.ImageIcon;
+import java.awt.Rectangle;
 import java.awt.Graphics;
 import javax.imageio.ImageIO;
 
 public class Player extends GeamObject {
-	public static int Height = 32;
-	public static int Width = 64;
+	
+	Handler handler;
+	
 	public static int Height2 = 100;
 	public static int Width2 = 42;
 	public static Image img = null;
 	boolean moved = false;
 	public static int walkAn = 0;
 	
-	public Player(int x, int y, ID id) {
+	public Player(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
+		
+		this.handler = handler;
 		
 		speedX = 0;
 		speedY = 0;
 	}
 
+	public Rectangle getBounds(){
+		return new Rectangle(x,y,50,100);
+	}
 	
 	
 	public void tick(){
@@ -32,10 +37,27 @@ public class Player extends GeamObject {
 		
 		x = Geam.clamp(x, 0, Geam.WIDTH-50);
 		y = Geam.clamp(y, 0, Geam.HEIGHT-100);
+		
+		collision();
 	}
 	
+	private void collision() {
+		for(int i = 0; i < Handler.object.size(); i++){
+			
+			GeamObject tempObject = Handler.object.get(i);
+			
+			if(tempObject.getID() == ID.BasicEnemy){
+				if(getBounds().intersects(tempObject.getBounds())){
+					HUD.HEALTH -= 2;
+				}
+			}
+		}
+		
+	}
+
 	public void render(Graphics g) {
-		if(id == ID.Player){
+		System.out.println(moved);
+
 			if (moved==false) {
 				try {
 					img = ImageIO.read(new File("PersonWalkR0.png"));
@@ -90,11 +112,6 @@ public class Player extends GeamObject {
 				moved=true;
 			}
 			g.drawImage(img , x, y, Width2, Height2, null);
-		}
-		if (id == ID.Player2){
-			g.setColor(Color.blue); 
-			g.fillOval(x,  y, Width, Height);
-		}
 	}
 		
 }

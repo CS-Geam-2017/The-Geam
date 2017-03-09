@@ -26,7 +26,7 @@ public class Geam extends Canvas implements Runnable {
 	
 	private Random r;
 	private Handler handler;
-	
+	public static int Pause = 0;
 	
 	public Geam() {
 		this.addKeyListener(new KeyInput(handler));
@@ -45,9 +45,9 @@ public class Geam extends Canvas implements Runnable {
 			//handler.addObject(new Player((WIDTH),(HEIGHT), ID.Player));
 		//}
 		
-		handler.addObject(new Player(100, 100, ID.Player));
-		handler.addObject(new Player(100+64, 100, ID.Player2));
-		for (int i = 0 ; i < 100 ; i++) {
+		handler.addObject(new Player(100, 100, ID.Player, handler));
+		handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
+		for (int i = 0 ; i < 2 ; i++) {
 			handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy));
 		}
 	}
@@ -68,6 +68,7 @@ public class Geam extends Canvas implements Runnable {
 	}
 	
 	public void run() {
+		this.requestFocus();
 		long lastTime= System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -104,6 +105,7 @@ public class Geam extends Canvas implements Runnable {
 	
 	private void tick() {
 		handler.tick();
+		HUD.tick();
 	}
 	
 	private void render() {
@@ -119,6 +121,8 @@ public class Geam extends Canvas implements Runnable {
 		g.fillRect(0,  0, WIDTH, HEIGHT);
 		
 		handler.render(g);
+		
+		HUD.render(g);
 		
 		g.dispose();
 		bs.show();
