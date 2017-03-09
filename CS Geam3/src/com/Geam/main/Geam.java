@@ -124,6 +124,18 @@ public class Geam extends Canvas implements Runnable {
 		bs.show();
 	}
 	
+	public static int clamp(int var, int min, int max){
+		if (var>=max){
+			return var = max;
+		}
+		else if (var<=min){
+			return var = min;
+		}
+		else {
+			return var;
+		}
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new Geam();

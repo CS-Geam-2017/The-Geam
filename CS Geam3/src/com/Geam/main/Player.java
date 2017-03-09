@@ -30,6 +30,8 @@ public class Player extends GeamObject {
 		x += speedX;
 		y += speedY;
 		
+		x = Geam.clamp(x, 0, Geam.WIDTH-50);
+		y = Geam.clamp(y, 0, Geam.HEIGHT-100);
 	}
 	
 	public void render(Graphics g) {

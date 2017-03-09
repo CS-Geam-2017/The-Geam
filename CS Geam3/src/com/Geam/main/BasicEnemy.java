@@ -11,7 +11,6 @@ public class BasicEnemy extends GeamObject {
 	public BasicEnemy(int x, int y, ID id) {
 		// TODO Auto-generated constructor stub
 		super(x, y, id);
-		System.out.println("working");
 		r = new Random();
 		
 		if (r.nextInt(2) == 1) speedX = 5;
@@ -35,9 +34,7 @@ public class BasicEnemy extends GeamObject {
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		int a = r.nextInt(3);
-		if (a == 1) g.setColor(Color.red);
-		else if (a == 2) g.setColor(Color.blue);
-		else g.setColor(Color.green);
+		g.setColor(Color.red);
 		g.fillOval(x, y, 50, 50);
 	}
 	
