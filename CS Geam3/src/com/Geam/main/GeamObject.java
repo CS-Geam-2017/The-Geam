@@ -10,7 +10,8 @@ import java.awt.Rectangle;
  */
 public abstract class GeamObject {
 
-	protected int x, y;
+	protected int x;
+	protected int y;
 	protected ID id;
 	protected int speedX, speedY;
 	

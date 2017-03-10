@@ -15,7 +15,8 @@ public class KeyInput extends KeyAdapter {
 	boolean downKey2 = false;
 	protected int speedX;
 	protected int speedY;
-	protected int speed = 5;
+	protected int changeX = 5;
+	protected int changeY = 5;
 	public KeyInput(Handler handler){
 		
 	}
@@ -32,38 +33,38 @@ public class KeyInput extends KeyAdapter {
 			if(tempObject.getID() == ID.Player){
 				//key events for player 1;
 				if(key == KeyEvent.VK_W && upKey==false) {
-					tempObject.setSpeedY(tempObject.getSpeedY()-speed);
+					tempObject.setSpeedY(tempObject.getSpeedY()-changeY);
 					upKey=true;
 				}
 				if(key == KeyEvent.VK_S && downKey==false) {
-					tempObject.setSpeedY(tempObject.getSpeedY()+speed);
+					tempObject.setSpeedY(tempObject.getSpeedY()+changeY);
 					downKey=true;
 				}
 				if(key == KeyEvent.VK_A && leftKey==false) {
-					tempObject.setSpeedX(tempObject.getSpeedX()-speed);
+					tempObject.setSpeedX(tempObject.getSpeedX()-changeX);
 					leftKey=true;
 				}
 				if(key == KeyEvent.VK_D && rightKey==false) {
-					tempObject.setSpeedX(tempObject.getSpeedX()+speed);
+					tempObject.setSpeedX(tempObject.getSpeedX()+changeX);
 					rightKey=true;
 				}
 			}
 			if(tempObject.getID() == ID.Player2) {
 				//key events for player 2
 				if(key == KeyEvent.VK_UP && upKey2==false) {
-					tempObject.setSpeedY(tempObject.getSpeedY()-speed);
+					tempObject.setSpeedY(tempObject.getSpeedY()-changeY);
 					upKey2=true;
 				}
 				if(key == KeyEvent.VK_DOWN && downKey2==false) {
-					tempObject.setSpeedY(tempObject.getSpeedY()+speed);
+					tempObject.setSpeedY(tempObject.getSpeedY()+changeY);
 					downKey2=true;
 				}
 				if(key == KeyEvent.VK_LEFT && leftKey2==false) {
-					tempObject.setSpeedX(tempObject.getSpeedX()-speed);
+					tempObject.setSpeedX(tempObject.getSpeedX()-changeX);
 					leftKey2=true;
 				}
 				if(key == KeyEvent.VK_RIGHT && rightKey2==false) {
-					tempObject.setSpeedX(tempObject.getSpeedX()+speed);
+					tempObject.setSpeedX(tempObject.getSpeedX()+changeX);
 					rightKey2=true;
 				}
 			}
@@ -83,19 +84,19 @@ public class KeyInput extends KeyAdapter {
 			if(tempObject.getID() == ID.Player2) {
 				//key events for player 2
 				if(key == KeyEvent.VK_LEFT) {
-					tempObject.setSpeedX(tempObject.getSpeedX()+speed);
+					tempObject.setSpeedX(tempObject.getSpeedX()+changeX);
 					leftKey2=false;
 				}
 				if(key == KeyEvent.VK_UP) {
-					tempObject.setSpeedY(tempObject.getSpeedY()+speed);
+					tempObject.setSpeedY(tempObject.getSpeedY()+changeY);
 					upKey2=false;
 				}
 				if(key == KeyEvent.VK_RIGHT) {
-					tempObject.setSpeedX(tempObject.getSpeedX()-speed);
+					tempObject.setSpeedX(tempObject.getSpeedX()-changeX);
 					rightKey2=false;
 				}
 				if(key == KeyEvent.VK_DOWN) {
-					tempObject.setSpeedY(tempObject.getSpeedY()-speed);
+					tempObject.setSpeedY(tempObject.getSpeedY()-changeY);
 					downKey2=false;
 				}
 			}
@@ -103,19 +104,19 @@ public class KeyInput extends KeyAdapter {
 			if(tempObject.getID() == ID.Player) {
 				//key events for player
 				if(key == KeyEvent.VK_W) {
-					tempObject.setSpeedY(tempObject.getSpeedY()+speed);
+					tempObject.setSpeedY(tempObject.getSpeedY()+changeY);
 					upKey=false;
 				}
 				if(key == KeyEvent.VK_S) {
-					tempObject.setSpeedY(tempObject.getSpeedY()-speed);
+					tempObject.setSpeedY(tempObject.getSpeedY()-changeY);
 					downKey=false;
 				}
 				if(key == KeyEvent.VK_A) {
-					tempObject.setSpeedX(tempObject.getSpeedX()+speed);
+					tempObject.setSpeedX(tempObject.getSpeedX()+changeX);
 					leftKey=false;
 				}
 				if(key == KeyEvent.VK_D) {
-					tempObject.setSpeedX(tempObject.getSpeedX()-speed);
+					tempObject.setSpeedX(tempObject.getSpeedX()-changeX);
 					rightKey=false;
 				}
 			}

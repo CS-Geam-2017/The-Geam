@@ -29,8 +29,8 @@ public class Player2 extends GeamObject {
 		x += speedX;
 		y += speedY;
 		
-		x = Geam.clamp(x, 0, Geam.WIDTH-50);
-		y = Geam.clamp(y, 0, Geam.HEIGHT-100);
+		x = Geam.clamp(x, 0, Geam.WIDTH-64);
+		y = Geam.clamp(y, 0, Geam.HEIGHT-32);
 		
 		collision();
 	}
