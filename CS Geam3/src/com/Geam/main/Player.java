@@ -65,6 +65,8 @@ public class Player extends GeamObject {
 					e.printStackTrace();
 				}
 			}
+			Width2 = 42;
+			Height2 = 100;
 			if (KeyInput.upKey==true) {
 				try {
 					img = ImageIO.read(new File("PersonWalkU.png"));

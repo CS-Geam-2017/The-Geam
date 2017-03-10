@@ -51,6 +51,11 @@ public class Player2 extends GeamObject {
 					HUD.HEALTH += 2;
 				}
 			}
+			if(tempObject.getID() == ID.TrackEnemy){
+				if(getBounds().intersects(tempObject.getBounds())){
+					HUD.HEALTH -= 2;
+				}
+			}
 		}
 		
 	}
