@@ -130,12 +130,12 @@ public class Geam extends Canvas implements Runnable {
 		if (paused == true){
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
-			g.drawString("Paused", 575, HEIGHT/2);
+			g.drawString("Paused", 600, HEIGHT/2);
 		}
 		if (start == false){
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
-			g.drawString("Press space to start", 575, HEIGHT/2);
+			g.drawString("Press space to start", 600, HEIGHT/2);
 		}
 		if (start == true) {
 			handler.render(g);
