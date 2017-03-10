@@ -75,6 +75,7 @@ public class Geam extends Canvas implements Runnable {
 	
 	public void run() {
 		this.requestFocus();
+		this.isMaximumSizeSet();
 		long lastTime= System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -110,7 +111,7 @@ public class Geam extends Canvas implements Runnable {
 	}
 	
 	private void tick() {
-		if (start == true && paused == false){
+		if (start == true && paused == false && HUD.HEALTH != 0){
 			handler.tick();
 			HUD.tick();
 		}
@@ -142,6 +143,11 @@ public class Geam extends Canvas implements Runnable {
 			
 			HUD.render(g);
 			
+		}
+		if (HUD.HEALTH == 0){
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Impact", Font.BOLD, 100));
+			g.drawString("GAME OVER", 400, 400);
 		}
 		g.dispose();
 		bs.show();
