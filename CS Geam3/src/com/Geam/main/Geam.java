@@ -3,6 +3,8 @@ package com.Geam.main;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
@@ -19,6 +21,9 @@ public class Geam extends Canvas implements Runnable {
 	public static final int WIDTH = 1366, HEIGHT = 705;
 	//Reg - WIDTH = 640, HEIGHT = WIDTH / 12*9
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
+	
+	public static boolean start = false;
+	public static boolean paused = false;
 	
 	private Thread thread;
 	private boolean running = false;
@@ -105,8 +110,10 @@ public class Geam extends Canvas implements Runnable {
 	}
 	
 	private void tick() {
-		handler.tick();
-		HUD.tick();
+		if (start == true && paused == false){
+			handler.tick();
+			HUD.tick();
+		}
 	}
 	
 	private void render() {
@@ -120,14 +127,25 @@ public class Geam extends Canvas implements Runnable {
 		
 		g.setColor(Color.GRAY);
 		g.fillRect(0,  0, WIDTH, HEIGHT);
-		
-		handler.render(g);
-		
-		HUD.render(g);
-		
+		if (paused == true){
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+			g.drawString("Paused", 575, HEIGHT/2);
+		}
+		if (start == false){
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+			g.drawString("Press space to start", 575, HEIGHT/2);
+		}
+		if (start == true) {
+			handler.render(g);
+			
+			HUD.render(g);
+			
+		}
 		g.dispose();
 		bs.show();
-	}
+	}	
 	
 	public static int clamp(int var, int min, int max){
 		if (var>=max){

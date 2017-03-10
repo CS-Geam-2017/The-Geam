@@ -70,8 +70,9 @@ public class KeyInput extends KeyAdapter {
 			}
 			
 			if(key == KeyEvent.VK_ESCAPE) System.exit(1);
-			if(key == KeyEvent.VK_P) Geam.Pause = 1;
-			if(key == KeyEvent.VK_R) Geam.Pause = 2;
+			if(key == KeyEvent.VK_SPACE) Geam.start= true;
+			if(key == KeyEvent.VK_P) Geam.paused = true;
+			if(key == KeyEvent.VK_R) Geam.paused = false;
 		}
 	}
 
