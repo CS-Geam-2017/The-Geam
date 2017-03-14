@@ -17,6 +17,7 @@ public class KeyInput extends KeyAdapter {
 	protected int speedY;
 	protected int changeX = 5;
 	protected int changeY = 5;
+	boolean released = true;
 	public KeyInput(Handler handler){
 		
 	}
@@ -71,8 +72,10 @@ public class KeyInput extends KeyAdapter {
 			
 			if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 			if(key == KeyEvent.VK_SPACE) Geam.start= true;
-			if(key == KeyEvent.VK_P) Geam.paused = true;
-			if(key == KeyEvent.VK_R) Geam.paused = false;
+			System.out.println(key == KeyEvent.VK_P && Geam.paused == false && released == true);
+			if(key == KeyEvent.VK_P && Geam.paused == false && released == true) Geam.paused = true;
+			else if(key == KeyEvent.VK_P && Geam.paused == true & released == true) Geam.paused = false;
+			released = false;
 		}
 	}
 
@@ -121,6 +124,7 @@ public class KeyInput extends KeyAdapter {
 					rightKey=false;
 				}
 			}
+			released = true;
 		}
 	}
 }

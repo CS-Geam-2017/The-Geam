@@ -4,7 +4,6 @@ package com.Geam.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
@@ -53,7 +52,7 @@ public class Geam extends Canvas implements Runnable {
 		handler.addObject(new Player(100, 100, ID.Player, handler));
 		handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
 		handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.TrackEnemy));
-		for (int i = 0 ; i < 10 ; i++) {
+		for (int i = 0 ; i < 15 ; i++) {
 			handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy));
 		}
 	}
@@ -99,6 +98,7 @@ public class Geam extends Canvas implements Runnable {
 				timer2 += 1000;
 				System.out.println("FPS:"+frames);
 				frames = 0;
+				handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy));
 			}
 			
 			if(System.currentTimeMillis() - timer > 100){
