@@ -99,8 +99,9 @@ public class Geam extends Canvas implements Runnable {
 				timer2 += 1000;
 				System.out.println("FPS:"+frames);
 				frames = 0;
-				handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy));
-				if (HUD.HEALTH>0){
+				
+				if (HUD.HEALTH>0&&start==true){
+					handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy));
 					score += 1;
 				}
 			}

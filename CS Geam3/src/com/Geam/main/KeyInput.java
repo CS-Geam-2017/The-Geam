@@ -72,7 +72,7 @@ public class KeyInput extends KeyAdapter {
 			
 			if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 			if(key == KeyEvent.VK_SPACE) Geam.start= true;
-			System.out.println(key == KeyEvent.VK_P && Geam.paused == false && released == true);
+
 			if(key == KeyEvent.VK_P && Geam.paused == false && released == true) Geam.paused = true;
 			else if(key == KeyEvent.VK_P && Geam.paused == true & released == true) Geam.paused = false;
 			released = false;
