@@ -23,6 +23,7 @@ public class Geam extends Canvas implements Runnable {
 	
 	public static boolean start = false;
 	public static boolean paused = false;
+	public static int score = 0;
 	
 	private Thread thread;
 	private boolean running = false;
@@ -99,6 +100,9 @@ public class Geam extends Canvas implements Runnable {
 				System.out.println("FPS:"+frames);
 				frames = 0;
 				handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy));
+				if (HUD.HEALTH>0){
+					score += 1;
+				}
 			}
 			
 			if(System.currentTimeMillis() - timer > 100){
