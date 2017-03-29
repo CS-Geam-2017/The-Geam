@@ -6,8 +6,12 @@ import java.awt.Rectangle;
 
 public class Tracker extends GeamObject{
 
-	public Tracker(int x, int y, ID id) {
+	Handler handler;
+	
+	public Tracker(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
+		
+		this.handler = handler;
 		
 		speedX = 3;
 		speedY = 3;

@@ -52,9 +52,9 @@ public class Geam extends Canvas implements Runnable {
 		
 		handler.addObject(new Player(100, 100, ID.Player, handler));
 		handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
-		handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.TrackEnemy));
+		handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.Tracker, handler));
 		for (int i = 0 ; i < 15 ; i++) {
-			handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy));
+			handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
 		}
 	}
 	
@@ -71,6 +71,7 @@ public class Geam extends Canvas implements Runnable {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		System.exit(1);
 	}
 	
 	public void run() {
@@ -100,8 +101,8 @@ public class Geam extends Canvas implements Runnable {
 				System.out.println("FPS:"+frames);
 				frames = 0;
 				
-				if (HUD.HEALTH>0&&start==true){
-					handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy));
+				if (HUD.HEALTH>0&&start==true&&paused==false){
+					handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
 					score += 1;
 				}
 			}
@@ -172,6 +173,7 @@ public class Geam extends Canvas implements Runnable {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		score = 0;
 		new Geam();
 	}
 

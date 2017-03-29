@@ -3,6 +3,7 @@ package com.Geam.main;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 public class KeyInput extends KeyAdapter {
 	public static boolean leftKey = false;
@@ -18,9 +19,11 @@ public class KeyInput extends KeyAdapter {
 	protected int changeX = 5;
 	protected int changeY = 5;
 	boolean released = true;
+	private Handler handler;
 	public KeyInput(Handler handler){
 		
 	}
+	Random r;
 	
 	/* (non-Javadoc)
 	 * @see java.awt.event.KeyAdapter#keyPressed(java.awt.event.KeyEvent)
@@ -28,9 +31,15 @@ public class KeyInput extends KeyAdapter {
 	public void keyPressed(KeyEvent e){
 		int key = e.getKeyCode();
 		
+		r = new Random();
+		
+		handler = new Handler();
+		
 		for(int i = 0; i < Handler.object.size(); i++){
 			
+			
 			GeamObject tempObject = Handler.object.get(i);
+			
 			if(tempObject.getID() == ID.Player){
 				//key events for player 1;
 				if(key == KeyEvent.VK_W && upKey==false) {
@@ -71,7 +80,30 @@ public class KeyInput extends KeyAdapter {
 			}
 			
 			if(key == KeyEvent.VK_ESCAPE) System.exit(1);
-			if(key == KeyEvent.VK_SPACE) Geam.start= true;
+			if(key == KeyEvent.VK_SPACE && Geam.start == false && released == true) Geam.start= true;
+			if(key == KeyEvent.VK_SPACE && HUD.HEALTH == 0 && released == true){
+				while (Handler.object.size() > 0) {
+					for (int p = 0; p < Handler.object.size(); p++) {
+						tempObject = Handler.object.get(p);
+						System.out.println(Handler.object.size());
+						if(tempObject.getID() == ID.Player) handler.removeObject(tempObject);
+						if(tempObject.getID() == ID.Player2) handler.removeObject(tempObject);
+						if(tempObject.getID() == ID.BasicEnemy) handler.removeObject(tempObject);
+						if(tempObject.getID() == ID.Tracker) handler.removeObject(tempObject);
+					}
+				}
+				handler.addObject(new Player(100, 100, ID.Player, handler));
+				handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
+				handler.addObject(new Tracker(Geam.WIDTH/2, Geam.HEIGHT/2, ID.Tracker, handler));
+				for (int o = 0 ; o < 15 ; o++) {
+					handler.addObject(new BasicEnemy(r.nextInt(Geam.WIDTH-50), r.nextInt(Geam.HEIGHT-50), ID.BasicEnemy, handler));
+				}
+				Geam.score=0;
+				Geam.start=false;
+				HUD.HEALTH = 100;
+				
+			}
+				
 
 			if(key == KeyEvent.VK_P && Geam.paused == false && released == true) Geam.paused = true;
 			else if(key == KeyEvent.VK_P && Geam.paused == true & released == true) Geam.paused = false;

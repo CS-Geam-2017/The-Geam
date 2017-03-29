@@ -9,12 +9,16 @@ import java.util.Random;
 
 public class BasicEnemy extends GeamObject {
 	private Random r;
+	Handler handler;
 	private static int Width = 20;
 	private static int Height = 20;
 	
-	public BasicEnemy(int x, int y, ID id) {
+	public BasicEnemy(int x, int y, ID id, Handler handler) {
 		// TODO Auto-generated constructor stub
 		super(x, y, id);
+		
+		this.handler = handler;
+		
 		r = new Random();
 		
 		if (r.nextInt(2) == 1) speedX = 3;
