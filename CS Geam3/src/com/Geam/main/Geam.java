@@ -154,6 +154,8 @@ public class Geam extends Canvas implements Runnable {
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Impact", Font.BOLD, 100));
 			g.drawString("GAME OVER", 400, 400);
+			g.setFont(new Font("Comic Sans MS",Font.BOLD , 30));
+			g.drawString("Space to Restart", 540, 500);
 		}
 		g.dispose();
 		bs.show();

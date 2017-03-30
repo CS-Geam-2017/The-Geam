@@ -82,15 +82,12 @@ public class KeyInput extends KeyAdapter {
 			if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 			if(key == KeyEvent.VK_SPACE && Geam.start == false && released == true) Geam.start= true;
 			if(key == KeyEvent.VK_SPACE && HUD.HEALTH == 0 && released == true){
-				while (Handler.object.size() > 0) {
-					for (int p = 0; p < Handler.object.size(); p++) {
+					for (int p = 0; Handler.object.size() > 0; p = Handler.object.size()-1) {
 						tempObject = Handler.object.get(p);
-						System.out.println(Handler.object.size());
 						if(tempObject.getID() == ID.Player) handler.removeObject(tempObject);
 						if(tempObject.getID() == ID.Player2) handler.removeObject(tempObject);
 						if(tempObject.getID() == ID.BasicEnemy) handler.removeObject(tempObject);
 						if(tempObject.getID() == ID.Tracker) handler.removeObject(tempObject);
-					}
 				}
 				handler.addObject(new Player(100, 100, ID.Player, handler));
 				handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
@@ -105,7 +102,7 @@ public class KeyInput extends KeyAdapter {
 			}
 				
 
-			if(key == KeyEvent.VK_P && Geam.paused == false && released == true) Geam.paused = true;
+			if(key == KeyEvent.VK_P && Geam.paused == false && released == true && HUD.HEALTH != 0) Geam.paused = true;
 			else if(key == KeyEvent.VK_P && Geam.paused == true & released == true) Geam.paused = false;
 			released = false;
 		}
