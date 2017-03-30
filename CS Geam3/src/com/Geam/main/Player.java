@@ -29,14 +29,26 @@ public class Player extends GeamObject {
 	public Rectangle getBounds(){
 		return new Rectangle(x,y,50,100);
 	}
+	public Rectangle getBoundsLeft(){
+		return new Rectangle(x,y+10,1,80);
+	}
+	public Rectangle getBoundsRight(){
+		return new Rectangle(x+Width2,y+10,1,80);
+	}
+	public Rectangle getBoundsTop(){
+		return new Rectangle(x+1,y,40,1);
+	}
+	public Rectangle getBoundsBottom(){
+		return new Rectangle(x+1,y+Height2,40,1);
+	}
 	
 	
 	public void tick(){
 		x += speedX;
 		y += speedY;
 		
-		x = Geam.clamp(x, 0, Geam.WIDTH-50);
-		y = Geam.clamp(y, 0, Geam.HEIGHT-100);
+		x = Geam.clamp(x, 0, Geam.WIDTH-64);
+		y = Geam.clamp(y, 0, Geam.HEIGHT-32);
 		
 		collision();
 	}
@@ -51,9 +63,23 @@ public class Player extends GeamObject {
 					HUD.HEALTH -= 2;
 				}
 			}
+			if(tempObject.getID() == ID.Player2) {
+				if(getBoundsLeft().intersects(tempObject.getBounds())){
+					tempObject.setX(x - Player2.Width);
+				}
+				if(getBoundsRight().intersects(tempObject.getBounds())){
+					tempObject.setX(x+Width2);
+				}
+				if(getBoundsTop().intersects(tempObject.getBounds())){
+					tempObject.setY(y-Player2.Height);
+				}
+				if(getBoundsBottom().intersects(tempObject.getBounds())){
+					tempObject.setY(y+Height2);
+				}
+			}
 		}
-		
 	}
+		
 
 	public void render(Graphics g) {
 
