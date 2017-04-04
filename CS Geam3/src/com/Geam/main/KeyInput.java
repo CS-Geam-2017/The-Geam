@@ -84,14 +84,12 @@ public class KeyInput extends KeyAdapter {
 			if(key == KeyEvent.VK_SPACE && HUD.HEALTH == 0 && released == true){
 					for (int p = 0; Handler.object.size() > 0; p = Handler.object.size()-1) {
 						tempObject = Handler.object.get(p);
-						if(tempObject.getID() == ID.Player) handler.removeObject(tempObject);
-						if(tempObject.getID() == ID.Player2) handler.removeObject(tempObject);
-						if(tempObject.getID() == ID.BasicEnemy) handler.removeObject(tempObject);
-						if(tempObject.getID() == ID.Tracker) handler.removeObject(tempObject);
+						handler.removeObject(tempObject);
 				}
 				handler.addObject(new Player(100, 100, ID.Player, handler));
 				handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
 				handler.addObject(new Tracker(Geam.WIDTH/2, Geam.HEIGHT/2, ID.Tracker, handler));
+				handler.addObject(new RangeEn(Geam.WIDTH-300, Geam.HEIGHT-150, ID.RangeEn, handler));
 				for (int o = 0 ; o < 15 ; o++) {
 					handler.addObject(new BasicEnemy(r.nextInt(Geam.WIDTH-50), r.nextInt(Geam.HEIGHT-50), ID.BasicEnemy, handler));
 				}
