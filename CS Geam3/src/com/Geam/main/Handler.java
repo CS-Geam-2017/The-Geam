@@ -1,5 +1,6 @@
 package com.Geam.main;
 
+
 import java.awt.Graphics;
 import java.util.LinkedList;
 
@@ -24,11 +25,11 @@ public class Handler {
 		}
 	}
 	public void addObject(GeamObject object){
-		this.object.add(object);
+		Handler.object.add(object);
 	}
 	
 	public void removeObject(GeamObject object){
-		this.object.remove(object);
+		Handler.object.remove(object);
 		
 	}
 }
