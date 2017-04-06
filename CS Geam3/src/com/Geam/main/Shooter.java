@@ -19,6 +19,7 @@ public class Shooter extends GeamObject{
 	}
 
 	public void tick() {
+		boolean xy = false;
 		for(int i = 0; i < Handler.object.size(); i++){
 			GeamObject tempObject = Handler.object.get(i);
 			if (tempObject.getID() == ID.Player){
@@ -27,7 +28,27 @@ public class Shooter extends GeamObject{
 				speedX = goX - x;
 				speedY = goY - y;
 				
-				if ((speedX < 300 || speedX > -300) && (speedY < 300 || speedY > -300)){
+				if ((speedX < 300 && speedX > -300) && (speedY < 300 && speedY > -300)){
+					System.out.println(!((speedX >= 5 && speedX <= -5) && (speedY >= 5 && speedY <= -5)));
+					while (xy == false){
+						System.out.println(speedX);
+						if (speedX<-5){
+							speedX /= 2;
+						}
+						else if (speedX>5){
+							speedX /= 2;
+						}
+						else if (speedY<-5){
+							speedX /= 2;
+						}
+						else if (speedX>5){
+							speedX /= 2;
+						}
+						else{
+							xy = true;
+						}
+					}
+					
 					handler.addObject(new Projectile(x, y, speedX, speedY, ID.Projectile, handler));
 					
 				}
