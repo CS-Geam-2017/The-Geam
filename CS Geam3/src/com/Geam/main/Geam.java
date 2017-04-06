@@ -1,7 +1,9 @@
 package com.Geam.main;
 
+
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
@@ -15,9 +17,13 @@ public class Geam extends Canvas implements Runnable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final int WIDTH = 1370, HEIGHT = WIDTH / 12*9;
+	public static final int WIDTH = 1366, HEIGHT = 705;
 	//Reg - WIDTH = 640, HEIGHT = WIDTH / 12*9
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
+	
+	public static boolean start = false;
+	public static boolean paused = false;
+	public static int score = 0;
 	
 	private Thread thread;
 	private boolean running = false;
@@ -25,7 +31,7 @@ public class Geam extends Canvas implements Runnable {
 	
 	private Random r;
 	private Handler handler;
-	
+	public static int Pause = 0;
 	
 	public Geam() {
 		this.addKeyListener(new KeyInput(handler));
@@ -44,8 +50,14 @@ public class Geam extends Canvas implements Runnable {
 			//handler.addObject(new Player((WIDTH),(HEIGHT), ID.Player));
 		//}
 		
-		handler.addObject(new Player(100, 100, ID.Player));
-		handler.addObject(new Player(100+64, 100, ID.Player2));
+		handler.addObject(new Player(100, 100, ID.Player, handler));
+		handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
+		//handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.Tracker, handler));
+		//handler.addObject(new RangeEn(WIDTH-300, HEIGHT-150, ID.RangeEn, handler));
+		handler.addObject(new Shooter(WIDTH-300, 150, ID.Shooter, handler));
+		for (int i = 0 ; i < 15 ; i++) {
+			//handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
+		}
 	}
 	
 	public synchronized void start() {
@@ -61,9 +73,12 @@ public class Geam extends Canvas implements Runnable {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		System.exit(1);
 	}
 	
 	public void run() {
+		this.requestFocus();
+		this.isMaximumSizeSet();
 		long lastTime= System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -87,6 +102,11 @@ public class Geam extends Canvas implements Runnable {
 				timer2 += 1000;
 				System.out.println("FPS:"+frames);
 				frames = 0;
+				
+				if (HUD.HEALTH>0&&start==true&&paused==false){
+					//handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
+					score += 1;
+				}
 			}
 			
 			if(System.currentTimeMillis() - timer > 100){
@@ -99,7 +119,10 @@ public class Geam extends Canvas implements Runnable {
 	}
 	
 	private void tick() {
-		handler.tick();
+		if (start == true && paused == false && HUD.HEALTH != 0){
+			handler.tick();
+			HUD.tick();
+		}
 	}
 	
 	private void render() {
@@ -113,15 +136,49 @@ public class Geam extends Canvas implements Runnable {
 		
 		g.setColor(Color.GRAY);
 		g.fillRect(0,  0, WIDTH, HEIGHT);
-		
-		handler.render(g);
-		
+		if (paused == true){
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+			g.drawString("Paused", 600, HEIGHT/2);
+		}
+		if (start == false){
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+			g.drawString("Press space to start", 600, HEIGHT/2);
+		}
+		if (start == true) {
+			handler.render(g);
+			
+			HUD.render(g);
+			
+		}
+		if (HUD.HEALTH == 0){
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Impact", Font.BOLD, 100));
+			g.drawString("GAME OVER", 400, 400);
+			g.setFont(new Font("Comic Sans MS",Font.BOLD , 30));
+			g.drawString("Space to Restart", 540, 500);
+		}
 		g.dispose();
 		bs.show();
+	}	
+	
+	public static int clamp(int var, int min, int max){
+		if (var>=max){
+			return var = max;
+		}
+		else if (var<=min){
+			return var = min;
+		}
+		else {
+			return var;
+		}
+		
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		score = 0;
 		new Geam();
 	}
 
