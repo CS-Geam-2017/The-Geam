@@ -28,10 +28,6 @@ public class Projectile extends GeamObject {
 		speedXPro = speedX;
 		speedYPro = speedY;
 		
-		if (speedXPro > 5) speedXPro = 5;
-		if (speedXPro < -5) speedXPro = -5;
-		if (speedYPro > 5) speedYPro = 5;
-		if (speedXPro < -5) speedYPro = -5;
 	}
 	
 	public Rectangle getBounds(){

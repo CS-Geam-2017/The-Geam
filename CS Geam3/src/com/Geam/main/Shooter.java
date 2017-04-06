@@ -28,8 +28,6 @@ public class Shooter extends GeamObject{
 				speedY = goY - y;
 				
 				if ((speedX < 300 || speedX > -300) && (speedY < 300 || speedY > -300)){
-					speedX /= 100;
-					speedY /= 100;
 					handler.addObject(new Projectile(x, y, speedX, speedY, ID.Projectile, handler));
 					
 				}
