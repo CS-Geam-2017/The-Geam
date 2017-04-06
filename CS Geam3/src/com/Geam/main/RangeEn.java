@@ -25,9 +25,8 @@ public class RangeEn extends GeamObject{
 				int goY = tempObject.getY()+Player.Height2/2;
 				speedX = goX - x;
 				speedY = goY - y;
-				System.out.println(speedY);
 				
-				if ((speedX < 300 && speedX > -300) && (speedY < 300 && speedY > -300)){
+				if ((speedX < 300 && speedX > -100) && (speedY < 300 && speedY > -100)){
 					if (speedX<-3) speedX = -3;
 					if (speedX>3) speedX = 3;
 				

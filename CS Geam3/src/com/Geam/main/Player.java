@@ -79,6 +79,11 @@ public class Player extends GeamObject {
 					tempObject.setY(y+Height2);
 				}
 			}
+			if(tempObject.getID() == ID.RangeEn){
+				if(getBounds().intersects(tempObject.getBounds())){
+					HUD.HEALTH += 2;
+				}
+			}
 		}
 	}
 		
