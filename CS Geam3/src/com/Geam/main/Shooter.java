@@ -8,9 +8,9 @@ public class Shooter extends GeamObject{
 
 	Handler handler;
 	
-	float speedX = 0;
-	float speedY = 0;
-	
+	public static float speedX = 0;
+	public static float speedY = 0;
+	public static boolean xy = false;
 	public Shooter(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
 		
@@ -19,7 +19,6 @@ public class Shooter extends GeamObject{
 	}
 
 	public void tick() {
-		boolean xy = false;
 		for(int i = 0; i < Handler.object.size(); i++){
 			GeamObject tempObject = Handler.object.get(i);
 			if (tempObject.getID() == ID.Player){
@@ -30,34 +29,21 @@ public class Shooter extends GeamObject{
 				
 				if ((speedX < 300 && speedX > -300) && (speedY < 300 && speedY > -300)){
 					System.out.println(!((speedX >= 5 && speedX <= -5) && (speedY >= 5 && speedY <= -5)));
-					while (xy == false){
-						System.out.println(speedX);
-						if (speedX<-5){
-							speedX /= 2;
-						}
-						else if (speedX>5){
-							speedX /= 2;
-						}
-						else if (speedY<-5){
-							speedX /= 2;
-						}
-						else if (speedX>5){
-							speedX /= 2;
-						}
-						else{
-							xy = true;
-						}
+					speedX /= 20;
+					speedY /= 20;
+					xy = true;
+					//handler.addObject(new Projectile(x, y, speedX, speedY, ID.Projectile, handler));
 					}
-					
-					handler.addObject(new Projectile(x, y, speedX, speedY, ID.Projectile, handler));
-					
+				else {
+					xy = false;
 				}
+			}
 				
 				x = Geam.clamp(x, 0, Geam.WIDTH-16);
 				y = Geam.clamp(y, 0, Geam.HEIGHT-16);
 			}
 		}	
-	}
+
 
 	public void render(Graphics g) {
 		g.setColor(Color.PINK);

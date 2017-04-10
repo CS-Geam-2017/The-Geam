@@ -85,6 +85,7 @@ public class Geam extends Canvas implements Runnable {
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		long timer2 = System.currentTimeMillis();
+		long projTime = System.currentTimeMillis();
 		int frames = 0;
 		while(running){
 			long now = System.nanoTime();
@@ -97,12 +98,10 @@ public class Geam extends Canvas implements Runnable {
 			if(running)
 				render();
 			frames++;
-			
 			if(System.currentTimeMillis() - timer2 > 1000){
 				timer2 += 1000;
 				System.out.println("FPS:"+frames);
 				frames = 0;
-				
 				if (HUD.HEALTH>0&&start==true&&paused==false){
 					//handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
 					score += 1;
@@ -113,6 +112,17 @@ public class Geam extends Canvas implements Runnable {
 				timer += 100;
 				if (KeyInput.rightKey == true && Player.walkAn < 5) Player.walkAn += 1;
 				else Player.walkAn = 0;
+			}
+			if(System.currentTimeMillis() - projTime > 500 ) {
+				projTime += 500;
+				if (Shooter.xy == true){
+					for (int i = 0; i < Handler.object.size(); i++) {
+						GeamObject tempObject = Handler.object.get(i);
+						if (tempObject.getID() == ID.Shooter){
+							handler.addObject(new Projectile(Handler.object.get(i).getX(), Handler.object.get(i).getY(), Shooter.speedX, Shooter.speedY, ID.Projectile, handler));
+						}
+					}
+				}
 			}
 		}
 		stop();
