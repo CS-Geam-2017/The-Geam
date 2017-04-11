@@ -30,9 +30,9 @@ public class Shooter extends GeamObject{
 				speedX = goX - x;
 				speedY = goY - y;
 				
-				if ((speedX < 300 && speedX > -300) && (speedY < 300 && speedY > -300)){
+				if ((speedX < 600 && speedX > -600) && (speedY < 600 && speedY > -600)){
 					while (speedOWF == false){
-						if (speedX / speedDiv > 5 || speedY / speedDiv > 5 || speedX / speedDiv < -5 || speedY / speedDiv < -5){
+						if (speedX / speedDiv > 10 || speedY / speedDiv > 10 || speedX / speedDiv < -10 || speedY / speedDiv < -10){
 							speedDiv += 1;
 						}
 						else{
