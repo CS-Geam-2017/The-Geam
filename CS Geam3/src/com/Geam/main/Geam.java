@@ -118,7 +118,7 @@ public class Geam extends Canvas implements Runnable {
 				if (Shooter.xy == true){
 					for (int i = 0; i < Handler.object.size(); i++) {
 						GeamObject tempObject = Handler.object.get(i);
-						if (tempObject.getID() == ID.Shooter){
+						if (tempObject.getID() == ID.Shooter && HUD.HEALTH > 0){
 							handler.addObject(new Projectile(Handler.object.get(i).getX(), Handler.object.get(i).getY(), Shooter.speedX, Shooter.speedY, ID.Projectile, handler));
 						}
 					}

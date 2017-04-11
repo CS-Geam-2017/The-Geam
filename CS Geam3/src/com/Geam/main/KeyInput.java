@@ -88,11 +88,12 @@ public class KeyInput extends KeyAdapter {
 				}
 				handler.addObject(new Player(100, 100, ID.Player, handler));
 				handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
-				handler.addObject(new Tracker(Geam.WIDTH/2, Geam.HEIGHT/2, ID.Tracker, handler));
-				handler.addObject(new RangeEn(Geam.WIDTH-300, Geam.HEIGHT-150, ID.RangeEn, handler));
-				for (int o = 0 ; o < 15 ; o++) {
-					handler.addObject(new BasicEnemy(r.nextInt(Geam.WIDTH-50), r.nextInt(Geam.HEIGHT-50), ID.BasicEnemy, handler));
-				}
+				//handler.addObject(new Tracker(Geam.WIDTH/2, Geam.HEIGHT/2, ID.Tracker, handler));
+				//handler.addObject(new RangeEn(Geam.WIDTH-300, Geam.HEIGHT-150, ID.RangeEn, handler));
+				//for (int o = 0 ; o < 15 ; o++) {
+				//	handler.addObject(new BasicEnemy(r.nextInt(Geam.WIDTH-50), r.nextInt(Geam.HEIGHT-50), ID.BasicEnemy, handler));
+				//}
+				handler.addObject(new Shooter(Geam.WIDTH-300, 150, ID.Shooter, handler));
 				Geam.score=0;
 				Geam.start=false;
 				HUD.HEALTH = 100;
