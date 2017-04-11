@@ -36,7 +36,6 @@ public class Projectile extends GeamObject {
 
 	public void tick() {
 		// TODO Auto-generated method stub
-		System.out.println(speedYPro);
 		x+= speedXPro;
 		y+= speedYPro;
 		

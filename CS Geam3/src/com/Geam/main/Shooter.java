@@ -24,16 +24,26 @@ public class Shooter extends GeamObject{
 			if (tempObject.getID() == ID.Player){
 				int goX = tempObject.getX()+Player.Width2/2;
 				int goY = tempObject.getY()+Player.Height2/2;
+				boolean speedOWF = false;
+				float speedDiv = 1;
+				
 				speedX = goX - x;
 				speedY = goY - y;
 				
 				if ((speedX < 300 && speedX > -300) && (speedY < 300 && speedY > -300)){
-					System.out.println(!((speedX >= 5 && speedX <= -5) && (speedY >= 5 && speedY <= -5)));
-					speedX /= 20;
-					speedY /= 20;
+					while (speedOWF == false){
+						if (speedX / speedDiv > 5 || speedY / speedDiv > 5 || speedX / speedDiv < -5 || speedY / speedDiv < -5){
+							speedDiv += 1;
+						}
+						else{
+							speedOWF = true;
+						}
+					}
+					speedX /= speedDiv;
+					speedY /= speedDiv;
 					xy = true;
 					//handler.addObject(new Projectile(x, y, speedX, speedY, ID.Projectile, handler));
-					}
+				}
 				else {
 					xy = false;
 				}
