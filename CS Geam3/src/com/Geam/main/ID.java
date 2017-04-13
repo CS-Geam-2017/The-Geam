@@ -7,6 +7,7 @@ public enum ID {
 	Player2(),
 	BasicEnemy(),
 	Tracker(),
-	RangeEn();
+	RangeEn(),
+	Shield();
 
 }

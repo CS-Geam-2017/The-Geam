@@ -24,6 +24,7 @@ public class Geam extends Canvas implements Runnable {
 	public static boolean start = false;
 	public static boolean paused = false;
 	public static int score = 0;
+	public static long PowerT = System.currentTimeMillis();
 	
 	private Thread thread;
 	private boolean running = false;
@@ -52,10 +53,10 @@ public class Geam extends Canvas implements Runnable {
 		
 		handler.addObject(new Player(100, 100, ID.Player, handler));
 		handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
-		handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.Tracker, handler));
-		handler.addObject(new RangeEn(WIDTH-300, HEIGHT-150, ID.RangeEn, handler));
+		//handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.Tracker, handler));
+		//handler.addObject(new RangeEn(WIDTH-300, HEIGHT-150, ID.RangeEn, handler));
 		for (int i = 0 ; i < 15 ; i++) {
-			handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
+			//handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
 		}
 	}
 	
@@ -103,7 +104,7 @@ public class Geam extends Canvas implements Runnable {
 				frames = 0;
 				
 				if (HUD.HEALTH>0&&start==true&&paused==false){
-					handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
+					//handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
 					score += 1;
 				}
 			}
@@ -121,6 +122,7 @@ public class Geam extends Canvas implements Runnable {
 		if (start == true && paused == false && HUD.HEALTH != 0){
 			handler.tick();
 			HUD.tick();
+			Powerups.tick();
 		}
 	}
 	

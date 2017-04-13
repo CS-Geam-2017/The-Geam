@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.Color;
 import java.awt.Graphics;
 import javax.imageio.ImageIO;
 
@@ -17,6 +16,7 @@ public class Player extends GeamObject {
 	public static Image img = null;
 	boolean moved = false;
 	public static int walkAn = 0;
+	public static int imgK = 0;
 	
 	public Player(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
@@ -100,6 +100,7 @@ public class Player extends GeamObject {
 			Width2 = 42;
 			Height2 = 100;
 			if (KeyInput.upKey==true && HUD.HEALTH!=0) {
+				imgK = 1;
 				try {
 					img = ImageIO.read(new File("PersonWalkU.png"));
 				} catch (IOException ex) {
@@ -108,6 +109,7 @@ public class Player extends GeamObject {
 				moved=true;
 			}
 			if (KeyInput.downKey==true && HUD.HEALTH!=0) {
+				imgK = 2;
 				try {
 					img = ImageIO.read(new File("PersonWalkD.png"));
 				} catch (IOException ex) {
@@ -116,6 +118,7 @@ public class Player extends GeamObject {
 				moved=true;
 			}
 			if (KeyInput.leftKey==true && HUD.HEALTH!=0) {
+				imgK = 3;
 				try {
 					img = ImageIO.read(new File("PersonWalkL.png"));
 				} catch (IOException ex) {
@@ -124,6 +127,7 @@ public class Player extends GeamObject {
 				moved=true;
 			}
 			if (KeyInput.rightKey==true && HUD.HEALTH!=0) {
+				imgK = 4;
 				try {
 					img = ImageIO.read(new File("PersonWalkR"+walkAn+".png"));
 				} catch (IOException ex) {
@@ -144,7 +148,7 @@ public class Player extends GeamObject {
 				}
 				moved=true;
 			}
-			if (KeyInput.rightKey!=true && KeyInput.leftKey!=true && KeyInput.upKey!=true && KeyInput.downKey!=true) {
+			if (KeyInput.rightKey!=true && KeyInput.leftKey!=true && KeyInput.upKey!=true && KeyInput.downKey!=true && imgK==4) {
 				try {
 					img = ImageIO.read(new File("PersonWalkR0.png"));
 				} catch (IOException ex) {

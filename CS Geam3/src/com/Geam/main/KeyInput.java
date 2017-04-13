@@ -10,6 +10,7 @@ public class KeyInput extends KeyAdapter {
 	public static boolean upKey = false;
 	public static boolean rightKey = false;
 	public static boolean downKey = false;
+	public static boolean RKRel = true;
 	boolean leftKey2 = false;
 	boolean upKey2 = false;
 	boolean rightKey2 = false;
