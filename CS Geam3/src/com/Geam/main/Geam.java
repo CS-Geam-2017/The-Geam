@@ -24,6 +24,7 @@ public class Geam extends Canvas implements Runnable {
 	public static boolean start = false;
 	public static boolean paused = false;
 	public static int score = 0;
+	public static boolean shield = false;
 	public static long PowerT = System.currentTimeMillis();
 	
 	private Thread thread;
@@ -53,6 +54,9 @@ public class Geam extends Canvas implements Runnable {
 		
 		handler.addObject(new Player(100, 100, ID.Player, handler));
 		handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
+		handler.addObject(new Shield(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.Shield, handler));
+		shield = true;
+		handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
 		//handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.Tracker, handler));
 		//handler.addObject(new RangeEn(WIDTH-300, HEIGHT-150, ID.RangeEn, handler));
 		for (int i = 0 ; i < 15 ; i++) {
@@ -114,6 +118,23 @@ public class Geam extends Canvas implements Runnable {
 				if (KeyInput.rightKey == true && Player.walkAn < 5) Player.walkAn += 1;
 				else Player.walkAn = 0;
 			}
+			if(System.currentTimeMillis()- PowerT > 10000){
+				PowerT += 10000;
+				if (shield == false){
+					shield = true;
+					handler.addObject(new Shield(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.Shield, handler));
+				}
+				else if (shield == true){
+					Shield.pickedUp=false;
+					shield = false;
+					for (int i = 0; i < Handler.object.size(); i++) {
+						GeamObject tempObject = Handler.object.get(i);
+						if (tempObject.id == ID.Shield){
+							Handler.object.remove(tempObject);
+						}
+					}
+				}
+			}
 		}
 		stop();
 	}
@@ -122,7 +143,6 @@ public class Geam extends Canvas implements Runnable {
 		if (start == true && paused == false && HUD.HEALTH != 0){
 			handler.tick();
 			HUD.tick();
-			Powerups.tick();
 		}
 	}
 	

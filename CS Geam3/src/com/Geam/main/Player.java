@@ -28,7 +28,7 @@ public class Player extends GeamObject {
 	}
 
 	public Rectangle getBounds(){
-		return new Rectangle(x,y,50,100);
+		return new Rectangle(x,y,42,100);
 	}
 	public Rectangle getBoundsLeft(){
 		return new Rectangle(x,y+10,1,80);
