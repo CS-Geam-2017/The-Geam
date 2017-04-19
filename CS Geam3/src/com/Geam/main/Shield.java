@@ -75,6 +75,7 @@ public class Shield extends GeamObject {
 			
 			if(tempObject.getID() == ID.Player && pickedUp == false){
 				if(getBounds().intersects(tempObject.getBounds())){
+					Geam.PowerT = System.currentTimeMillis();
 					pickedUp = true;
 				}
 			}

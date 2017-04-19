@@ -120,11 +120,11 @@ public class Geam extends Canvas implements Runnable {
 			}
 			if(System.currentTimeMillis()- PowerT > 10000){
 				PowerT += 10000;
-				if (shield == false){
+				if (shield == false && Shield.pickedUp == false){
 					shield = true;
 					handler.addObject(new Shield(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.Shield, handler));
 				}
-				else if (shield == true){
+				else if (shield == true && Shield.pickedUp == true){
 					Shield.pickedUp=false;
 					shield = false;
 					for (int i = 0; i < Handler.object.size(); i++) {
