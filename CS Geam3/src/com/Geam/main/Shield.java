@@ -4,12 +4,18 @@ package com.Geam.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Shield extends GeamObject {
 	Handler handler;
 	private static int Width = 50;
 	private static int Height = 50;
+	public static Image img = null;
 	public static boolean pickedUp = false;
 	public Shield(int x, int y, ID id, Handler handler) {
 		// TODO Auto-generated constructor stub
@@ -29,12 +35,17 @@ public class Shield extends GeamObject {
 	}
 
 	public void render(Graphics g) {
+		
 		// TODO Auto-generated method stub
 		if (pickedUp==false){
-			g.setColor(Color.green);
-			Height = 50;
-			Width = 50;
-			g.fillRect(x, y, Width, Height);
+			try {
+				img = ImageIO.read(new File("Shield clone.png"));
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			Width = 250;
+			Height = 250;
+			g.drawImage(img , x, y, Width, Height, null);
 		}
 		if (pickedUp == true){
 			g.setColor(Color.blue);
