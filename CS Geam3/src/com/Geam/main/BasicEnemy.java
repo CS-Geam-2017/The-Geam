@@ -37,6 +37,9 @@ public class BasicEnemy extends GeamObject {
 		x+= speedX;
 		y+= speedY;
 		
+		x = Geam.clamp(x, 0, Geam.WIDTH-20);
+		y = Geam.clamp(y, 0, Geam.HEIGHT-20);
+		
 		if(y <= 0 || y >= Geam.HEIGHT-Height) speedY *= -1;
 		if(x <= 0 || x >= Geam.WIDTH-Width) speedX *= -1;
 	}

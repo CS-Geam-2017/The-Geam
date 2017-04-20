@@ -11,8 +11,6 @@ public class Shield extends GeamObject {
 	private static int Width = 50;
 	private static int Height = 50;
 	public static boolean pickedUp = false;
-	private static boolean hitting = false;
-	
 	public Shield(int x, int y, ID id, Handler handler) {
 		// TODO Auto-generated constructor stub
 		super(x, y, id);
@@ -82,10 +80,24 @@ public class Shield extends GeamObject {
 			if(tempObject.getID() == ID.BasicEnemy && pickedUp==true){
 				if(getBounds().intersects(tempObject.getBounds())){
 					if (Player.imgK == 3 || Player.imgK==4){
-						tempObject.setSpeedX(tempObject.getSpeedX()*-1);
+						if (Player.imgK == 3){
+							tempObject.setSpeedX(-3);
+							tempObject.setX(x-24);
+						}
+						else {
+							tempObject.setSpeedX(3);
+							tempObject.setX(x+10);
+						}
 					}
 					if (Player.imgK == 1 || Player.imgK==2){
-						tempObject.setSpeedY(tempObject.getSpeedY()*-1);
+						if (Player.imgK == 1){
+							tempObject.setSpeedY(-3);
+							tempObject.setY(y-24);
+						}
+						else {
+							tempObject.setSpeedY(3);
+							tempObject.setY(y+10);
+						}
 					}
 				}
 			}
