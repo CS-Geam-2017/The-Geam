@@ -39,12 +39,12 @@ public class Shield extends GeamObject {
 		// TODO Auto-generated method stub
 		if (pickedUp==false){
 			try {
-				img = ImageIO.read(new File("Shield clone.png"));
+				img = ImageIO.read(new File("ShieldIcon.png"));
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
-			Width = 250;
-			Height = 250;
+			Width = 50;
+			Height = 50;
 			g.drawImage(img , x, y, Width, Height, null);
 		}
 		if (pickedUp == true){
