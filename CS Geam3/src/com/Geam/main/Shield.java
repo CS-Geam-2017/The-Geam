@@ -93,21 +93,21 @@ public class Shield extends GeamObject {
 					if (Player.imgK == 3 || Player.imgK==4){
 						if (Player.imgK == 3){
 							tempObject.setSpeedX(-3);
-							tempObject.setX(x-24);
+							tempObject.setX(x-21);
 						}
 						else {
 							tempObject.setSpeedX(3);
-							tempObject.setX(x+10);
+							tempObject.setX(x+7);
 						}
 					}
 					if (Player.imgK == 1 || Player.imgK==2){
 						if (Player.imgK == 1){
 							tempObject.setSpeedY(-3);
-							tempObject.setY(y-24);
+							tempObject.setY(y-21);
 						}
 						else {
 							tempObject.setSpeedY(3);
-							tempObject.setY(y+10);
+							tempObject.setY(y+7);
 						}
 					}
 				}
