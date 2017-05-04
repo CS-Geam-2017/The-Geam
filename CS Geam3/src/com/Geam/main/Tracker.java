@@ -2,11 +2,17 @@ package com.Geam.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Tracker extends GeamObject{
 
 	Handler handler;
+	public static Image img = null;
 	
 	public Tracker(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
@@ -42,8 +48,13 @@ public class Tracker extends GeamObject{
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.ORANGE);
-		g.fillOval(x, y, 16, 16);
+		try {
+			img = ImageIO.read(new File("New Piskel clone.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		g.drawImage(img, x, y, 40, 40, null);
 		
 	}
 
