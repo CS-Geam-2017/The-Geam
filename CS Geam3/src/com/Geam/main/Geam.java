@@ -46,6 +46,10 @@ public class Geam extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		// ^ Needs to know what handler is before game is created
+		handler.addObject(new Player(300, 130, ID.Player, handler));
+		handler.addObject(new Wall(380, 0, ID.Wall, handler));
+		handler.addObject(new Wall(380, 412, ID.Wall, handler));
+		handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.Tracker, handler));
 		new Window(WIDTH, HEIGHT, "Geam", this);
 		
 		
@@ -55,9 +59,7 @@ public class Geam extends Canvas implements Runnable {
 			//handler.addObject(new Player((WIDTH),(HEIGHT), ID.Player));
 		//}
 		
-		handler.addObject(new Player(100, 200, ID.Player, handler));
-		handler.addObject(new Wall(580, 150, ID.Wall, handler));
-		handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.Tracker, handler));
+		
 	}
 	
 	public synchronized void start() {
@@ -78,32 +80,37 @@ public class Geam extends Canvas implements Runnable {
 	
 	public static boolean check(int x, int y, int end){
 		boolean intersect = false;
-		for (int i = 0; i <Handler.object.size(); i++){
+		for (int i = 0; i <3; i++){
 			GeamObject tempObject = Handler.object.get(i);
 			if (tempObject.getID()==ID.Wall && end ==0){
-				if (new Rectangle(x,y,1,1).intersects(tempObject.getBounds())){
+				if (new Rectangle(x,y,10,10).intersects(tempObject.getBounds())){
 					//System.out.println("working");
 					intersect = true;
 				}
 			}
 			if (tempObject.getID() == ID.Player && end == 3){
-				if (new Rectangle(x,y,1,1).intersects(tempObject.getBounds())){
+				if (new Rectangle(x,y,10,10).intersects(tempObject.getBounds())){
 					intersect = true;
-					System.out.println("working1");
+					//System.out.println("working1");
 				}
 			}
 		}
 		if ((x<= 0 || x >= WIDTH || y <= 0 || y>= HEIGHT) && end == 0){
 			intersect = true;
-			System.out.println("working2");
+			//System.out.println("working2");
 		}
-		if (end != 1){
-			for(int i = 0; i<counting; i++){
+		if (end == 0){
+			for(int i = 0; i<=counting; i++){
 				if (openSet[i][0]==x && openSet[i][1]==y){
 					intersect = true;
 					//System.out.println("working3");
 				}
 			}
+		}
+		if (end == 2){
+			//for(int i = 0; i<Handler.object.size(); i++){
+				
+			//}
 		}
 		
 		//System.out.println(checkedLi[checkCount]+","+checkedLi[checkCount]);
@@ -111,8 +118,8 @@ public class Geam extends Canvas implements Runnable {
 		
 	}
 	public static boolean CID(int x,int y){
+		//System.out.println("working3");
 		boolean YAY = false;
-		for (int i = 0; i <= Handler.object.size(); i++){
 			GeamObject tempObject = Handler.object.get(0);
 			if (tempObject.id==ID.Player){
 				if (new Rectangle(x,y,1,1).intersects(tempObject.getBounds())){
@@ -122,7 +129,7 @@ public class Geam extends Canvas implements Runnable {
 					YAY = false;
 				}
 			}
-		}
+		//System.out.println(YAY);
 		return YAY;
 	}
 	
@@ -200,8 +207,8 @@ public class Geam extends Canvas implements Runnable {
 					direction = 0;
 					while (direction <= 7){
 						counting += 1;
-						//System.out.println(parX);
 						if (direction == 0 && check(parX-10,parY+10, 0)){
+							System.out.println("working");
 							curX = parX-10;
 							curY = parY+10;
 							for (int i = 0; i < counting; i++){
@@ -224,6 +231,7 @@ public class Geam extends Canvas implements Runnable {
 							counting--;
 						}
 						if (direction == 1 && check(parX-10,parY, 0)){
+							System.out.println("working1");
 							curX = parX-10;
 							curY = parY;
 							for (int i = 0; i < counting; i++){
@@ -246,6 +254,7 @@ public class Geam extends Canvas implements Runnable {
 							counting--;
 						}
 						if (direction == 2 && check(parX-10,parY-10, 0)){
+							System.out.println("working2");
 							curX = parX-10;
 							curY = parY-10;
 							for (int i = 0; i < counting; i++){
@@ -268,6 +277,7 @@ public class Geam extends Canvas implements Runnable {
 							counting--;
 						}
 						if (direction == 3 && check(parX+10,parY-10, 0)){
+							System.out.println("working3");
 							curX = parX+10;
 							curY = parY-10;
 							for (int i = 0; i < counting; i++){
@@ -290,6 +300,7 @@ public class Geam extends Canvas implements Runnable {
 							counting--;
 						}
 						if (direction == 4 && check(parX+10,parY, 0)){
+							System.out.println("working4");
 							curX = parX+10;
 							curY = parY;
 							for (int i = 0; i < counting; i++){
@@ -312,6 +323,7 @@ public class Geam extends Canvas implements Runnable {
 							counting--;
 						}
 						if (direction == 5 && check(parX+10,parY+10, 0)){
+							System.out.println("working5");
 							curX = parX+10;
 							curY = parY+10;
 							for (int i = 0; i < counting; i++){
@@ -321,7 +333,7 @@ public class Geam extends Canvas implements Runnable {
 									}
 								}
 							}
-							g = 42+openSet[countingPar][3];
+							g = 140+openSet[countingPar][3];
 							openSet[counting][0] = parX+10;
 							openSet[counting][1] = parY+10;
 							openSet[counting][2]=countingPar;
@@ -334,6 +346,7 @@ public class Geam extends Canvas implements Runnable {
 							counting--;
 						}
 						if (direction == 6 && check(parX,parY+10, 0)){
+							System.out.println("working6");
 							curX = parX;
 							curY = parY+10;
 							for (int i = 0; i < counting; i++){
@@ -356,6 +369,7 @@ public class Geam extends Canvas implements Runnable {
 							counting--;
 						}
 						if (direction == 7 && check(parX,parY-10, 0)){
+							System.out.println("working7");
 							curX = parX;
 							curY = parY-10;
 							for (int i = 0; i < counting; i++){
@@ -402,25 +416,32 @@ public class Geam extends Canvas implements Runnable {
 						}
 					render();
 				}
-				int count = 0;
-				
-				while (followSet[count][0] != openSet[0][0] && followSet[count][1] != openSet[0][1] && count < 10000){
+				int count = counting;
+				System.out.println(openSet[count][0] != WIDTH/2 && openSet[count][1] != HEIGHT/2);
+				while (openSet[count][0] != WIDTH/2 && openSet[count][1] != HEIGHT/2){
 					followSet[count][0] = openSet[countingPar][0];
 					followSet[count][1] = openSet[countingPar][1];
+					curX = followSet[count][0];
+					curY = followSet[count][1];
 					count++;
 					countingPar = openSet[countingPar][2];
-					
+					//System.out.println("working");
+					handler.addObject(new PlaceHolder(openSet[countingPar][0],openSet[countingPar][1],ID.PlaceHolder,handler,1));
 					//System.out.println(openSet[countingPar][1]);
 					//System.out.println(followSet[count]);
 					//System.out.println(openSet[0][1]);
+					render();
 				}
 				//System.out.println("");
-				for (int i = 0; i<followSet.length-9000; i++){
+				for (int i = 0; i<count; i++){
+					System.out.println("working1");
 					//System.out.println(followSet[i]+","+followSet[i+1]);
 					handler.addObject(new PlaceHolder(parX,parY,ID.PlaceHolder,handler,1));
+					render();
 				}
 				
 			}
+			//System.out.println("working2");
 		}
 		stop();
 	}

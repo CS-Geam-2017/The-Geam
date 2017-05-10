@@ -12,10 +12,6 @@ public class PlaceHolder extends GeamObject{
 	public PlaceHolder(int x, int y, ID id, Handler handler, int end) {
 		super(x, y, id);
 		ending = end;
-		this.handler = handler;
-		
-		speedX = 3;
-		speedY = 3;
 	}
 
 	public void tick() {
@@ -30,7 +26,7 @@ public class PlaceHolder extends GeamObject{
 
 
 	public Rectangle getBounds() {
-		return new Rectangle(x,y,16,16);
+		return new Rectangle(x,y,10,10);
 	}
 
 }

@@ -21,13 +21,13 @@ public class Wall extends GeamObject {
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		g.setColor(Color.ORANGE);
-		g.fillRect(x, y, 30, 1000000);
+		g.fillRect(x, y, 30, 400);
 	}
 
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
-		return new Rectangle(x,y,30,1000000);
+		return new Rectangle(x,y,30,400);
 	}
 
 }

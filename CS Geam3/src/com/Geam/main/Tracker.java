@@ -51,10 +51,10 @@ public class Tracker extends GeamObject{
 		}
 		if (Geam.done == true && Geam.start == true){
 				f--;
-				if (Geam.followSet[f][0]!=0 || Geam.followSet[f][1]!=Geam.HEIGHT ){
-					x = Geam.openSet[Geam.lowestF][0];
-					y = Geam.openSet[Geam.lowestF][1];
-				}
+				//if (Geam.followSet[f][0]!=0 || Geam.followSet[f][1]!=Geam.HEIGHT ){
+					//x = Geam.openSet[Geam.lowestF][0];
+					//y = Geam.openSet[Geam.lowestF][1];
+				//}
 		}
 		collision();
 	}
