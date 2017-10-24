@@ -50,7 +50,7 @@ public class Shield extends GeamObject {
 		if (pickedUp == true){
 			g.setColor(Color.blue);
 			if (Player.imgK == 4){
-				x = Handler.object.get(0).getX()+50;
+				x = Handler.object.get(0).getX()+47;
 				y = Handler.object.get(0).getY()-5;
 				Width = 5;
 				Height = 110;
@@ -97,7 +97,7 @@ public class Shield extends GeamObject {
 						}
 						else {
 							tempObject.setSpeedX(3);
-							tempObject.setX(x+7);
+							tempObject.setX(x+5);
 						}
 					}
 					if (Player.imgK == 1 || Player.imgK==2){

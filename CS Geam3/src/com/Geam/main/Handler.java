@@ -12,6 +12,14 @@ public class Handler {
 		for(int i = 0; i < object.size(); i++){
 			GeamObject tempObject = object.get(i);
 			
+			if (tempObject.id == ID.Shield) {
+				tempObject.tick();
+			}
+		
+		}
+		for(int i = 0; i < object.size(); i++){
+			GeamObject tempObject = object.get(i);
+			
 			tempObject.tick();
 		
 		}
