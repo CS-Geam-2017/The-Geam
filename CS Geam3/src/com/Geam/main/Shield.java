@@ -30,13 +30,11 @@ public class Shield extends GeamObject {
 	}
 
 	public void tick() {
-		// TODO Auto-generated method stub
 		collision();
 	}
 
 	public void render(Graphics g) {
 		
-		// TODO Auto-generated method stub
 		if (pickedUp==false){
 			try {
 				img = ImageIO.read(new File("ShieldIcon.png"));
