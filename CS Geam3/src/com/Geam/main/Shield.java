@@ -48,6 +48,7 @@ public class Shield extends GeamObject {
 			g.drawImage(img , x, y, Width, Height, null);
 		}
 		if (pickedUp == true){
+			//Defines the shape and position of the shield
 			g.setColor(Color.blue);
 			if (Player.imgK == 4){
 				x = Handler.object.get(0).getX()+47;
@@ -89,6 +90,7 @@ public class Shield extends GeamObject {
 				}
 			}
 			if(tempObject.getID() == ID.BasicEnemy && pickedUp==true){
+				//Sets position of the ball after intersection
 				if(getBounds().intersects(tempObject.getBounds())){
 					if (Player.imgK == 3 || Player.imgK==4){
 						if (Player.imgK == 3){
