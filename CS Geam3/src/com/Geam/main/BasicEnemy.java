@@ -14,7 +14,6 @@ public class BasicEnemy extends GeamObject {
 	private static int Height = 20;
 	
 	public BasicEnemy(int x, int y, ID id, Handler handler) {
-		// TODO Auto-generated constructor stub
 		super(x, y, id);
 		
 		this.handler = handler;
@@ -33,7 +32,6 @@ public class BasicEnemy extends GeamObject {
 	}
 
 	public void tick() {
-		// TODO Auto-generated method stub
 		x+= speedX;
 		y+= speedY;
 		
@@ -45,7 +43,6 @@ public class BasicEnemy extends GeamObject {
 	}
 
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
 		g.setColor(Color.red);
 		g.fillOval(x, y, Width, Height);
 	}

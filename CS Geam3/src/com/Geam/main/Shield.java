@@ -18,7 +18,6 @@ public class Shield extends GeamObject {
 	public static Image img = null;
 	public static boolean pickedUp = false;
 	public Shield(int x, int y, ID id, Handler handler) {
-		// TODO Auto-generated constructor stub
 		super(x, y, id);
 		
 		this.handler = handler;

@@ -89,7 +89,6 @@ public class KeyInput extends KeyAdapter {
 				}
 				handler.addObject(new Player(100, 100, ID.Player, handler));
 				handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
-				//handler.addObject(new Tracker(Geam.WIDTH/2, Geam.HEIGHT/2, ID.Tracker, handler));
 				handler.addObject(new RangeEn(Geam.WIDTH-300, Geam.HEIGHT-150, ID.RangeEn, handler));
 				Geam.shield = false;
 				Shield.pickedUp = false;

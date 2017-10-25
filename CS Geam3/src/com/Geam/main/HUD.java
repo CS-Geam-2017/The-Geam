@@ -9,11 +9,6 @@ public class HUD {
 	static boolean hp = true;
 	public static void tick() {
 		
-		//if (HEALTH == 0) hp = false;
-		//else if (HEALTH == 100) hp = true;
-		//if (hp == true) HEALTH--;
-		//else HEALTH++;
-		
 		HEALTH = Geam.clamp(HEALTH, 0, 100);
 	}
 	

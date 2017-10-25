@@ -41,33 +41,30 @@ public class Geam extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		// ^ Needs to know what handler is before game is created
-		new Window(WIDTH, HEIGHT, "Geam", this);
 		
+		new Window(WIDTH, HEIGHT, "Geam", this);
+		// ^ Creates a new canvas with name "Geam"
 		
 		r = new Random();
 		
-		//for(int i = 0; i < 1; i++){
-
-			//handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player));
-			//handler.addObject(new Player((WIDTH),(HEIGHT), ID.Player));
-		//}
 		
 		handler.addObject(new Player(100, 100, ID.Player, handler));
 		handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
-		handler.addObject(new Shield(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.Shield, handler));
 		shield = true;
-		//handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
-		//handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.Tracker, handler));
+		handler.addObject(new Shield(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.Shield, handler));
 		handler.addObject(new RangeEn(WIDTH-300, HEIGHT-150, ID.RangeEn, handler));
 		for (int o = 0 ; o < 15 ; o++) {
 			handler.addObject(new BasicEnemy(r.nextInt(Geam.WIDTH-50), r.nextInt(Geam.HEIGHT-50), ID.BasicEnemy, handler));
 		}
+		// ^ Adds all of our objects into the game
+		
 	}
 	
 	public synchronized void start() {
 		thread = new Thread(this);
 		thread.start();
 		running = true;
+		// ^ Sets the code to run
 	}
 	
 	public synchronized void stop() {
@@ -78,18 +75,27 @@ public class Geam extends Canvas implements Runnable {
 			e.printStackTrace();
 		}
 		System.exit(1);
+		// ^ Tells the code to stop
 	}
 	
 	public void run() {
+		
 		this.requestFocus();
+		// ^ Makes it so the window that opens is already focused
 		this.isMaximumSizeSet();
+		// ^ Makes the window full screen
 		long lastTime= System.nanoTime();
+		// ^ Gets current time
 		double amountOfTicks = 60.0;
+		// ^ Sets the # of seconds to 60
 		double ns = 1000000000 / amountOfTicks;
+		// ^ Defines how many nano-seconds are in a second
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		long timer2 = System.currentTimeMillis();
+		// ^ Adding timers for things in the game
 		int frames = 0;
+		// ^ An int to count up frames
 		while(running){
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -101,6 +107,7 @@ public class Geam extends Canvas implements Runnable {
 			if(running)
 				render();
 			frames++;
+			// ^ Adds # of frames per sec
 			
 			if(System.currentTimeMillis() - timer2 > 1000){
 				timer2 += 1000;
@@ -113,12 +120,15 @@ public class Geam extends Canvas implements Runnable {
 					score += 1;
 				}
 			}
+			// ^ Defines everything that happens every 1 sec, including reseting the FPS counter and increasing the score & # of balls
 			
 			if(System.currentTimeMillis() - timer > 100){
 				timer += 100;
 				if (KeyInput.rightKey == true && Player.walkAn < 5) Player.walkAn += 1;
 				else Player.walkAn = 0;
 			}
+			// ^ Defines the amount of time between each animation frame of player1
+			
 			if(System.currentTimeMillis()- PowerT > 10000){
 				PowerT += 10000;
 				if (shield == false && Shield.pickedUp == false){
@@ -136,6 +146,8 @@ public class Geam extends Canvas implements Runnable {
 					}
 				}
 			}
+			// ^ Defines the time between each shield pickup and amount of time that you have the shield
+			
 		}
 		stop();
 	}
@@ -145,6 +157,7 @@ public class Geam extends Canvas implements Runnable {
 			handler.tick();
 			HUD.tick();
 		}
+		// ^ This runs as fast as possible, runs the game
 	}
 	
 	private void render() {
@@ -155,25 +168,34 @@ public class Geam extends Canvas implements Runnable {
 		}
 		
 		Graphics g = bs.getDrawGraphics();
+		// ^ Defines the render tool for the canvas
 		
 		g.setColor(Color.GRAY);
 		g.fillRect(0,  0, WIDTH, HEIGHT);
+		// ^ Makes the background
+		
 		if (paused == true){
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
 			g.drawString("Paused", 600, HEIGHT/2);
 		}
+		// ^ Makes the pause screen
+		
 		if (start == false){
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
 			g.drawString("Press space to start", 600, HEIGHT/2);
 		}
+		// ^ Makes the start screen
+		
 		if (start == true) {
 			handler.render(g);
 			
 			HUD.render(g);
 			
 		}
+		// ^ Renders any other item in the game
+		
 		if (HUD.HEALTH == 0){
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Impact", Font.BOLD, 100));
@@ -181,6 +203,8 @@ public class Geam extends Canvas implements Runnable {
 			g.setFont(new Font("Comic Sans MS",Font.BOLD , 30));
 			g.drawString("Space to Restart", 540, 500);
 		}
+		// ^ Makes the game over screen
+		
 		g.dispose();
 		bs.show();
 	}	
@@ -195,13 +219,13 @@ public class Geam extends Canvas implements Runnable {
 		else {
 			return var;
 		}
-		
+		// ^ A simple method to keep a coordinate in given bounds
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		score = 0;
 		new Geam();
+		// ^ The start of the program, runs when start is pressed, and creates a new instance of Geam
 	}
 
 	

@@ -35,7 +35,6 @@ public class Player2 extends GeamObject {
 
 	@Override
 	public Rectangle getBounds() {
-		// TODO Auto-generated method stub
 		return new Rectangle(x,y,64,32);
 	}
 	public Rectangle getBoundsLeft(){

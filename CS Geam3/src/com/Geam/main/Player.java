@@ -93,7 +93,6 @@ public class Player extends GeamObject {
 				try {
 					img = ImageIO.read(new File("PersonWalkR0.png"));
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
