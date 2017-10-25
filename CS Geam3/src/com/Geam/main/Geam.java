@@ -15,6 +15,7 @@ public class Geam extends Canvas implements Runnable {
 	 * Hello, Trinity 
 	 * Hello, Jackson Mansell
 	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	public static final int WIDTH = 1366, HEIGHT = 705;
@@ -25,6 +26,7 @@ public class Geam extends Canvas implements Runnable {
 	public static boolean paused = false;
 	public static int score = 0;
 	public static boolean shield = false;
+	
 	public static long PowerT = System.currentTimeMillis();
 	
 	private Thread thread;
@@ -32,7 +34,9 @@ public class Geam extends Canvas implements Runnable {
 	
 	
 	private Random r;
+	
 	private Handler handler;
+	
 	public static int Pause = 0;
 	
 	public Geam() {
