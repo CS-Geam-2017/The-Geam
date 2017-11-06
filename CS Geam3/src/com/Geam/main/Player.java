@@ -89,7 +89,7 @@ public class Player extends GeamObject {
 		
 
 	public void render(Graphics g) {
-			if (moved==false) {
+			if (moved==false && Geam.paused!=true) {
 				try {
 					img = ImageIO.read(new File("PersonWalkR0.png"));
 				} catch (IOException e) {
@@ -98,7 +98,7 @@ public class Player extends GeamObject {
 			}
 			Width2 = 42;
 			Height2 = 100;
-			if (KeyInput.upKey==true && HUD.HEALTH!=0) {
+			if (KeyInput.upKey==true && HUD.HEALTH!=0 && Geam.paused!=true) {
 				imgK = 1;
 				try {
 					img = ImageIO.read(new File("PersonWalkU.png"));
@@ -107,7 +107,7 @@ public class Player extends GeamObject {
 				}
 				moved=true;
 			}
-			if (KeyInput.downKey==true && HUD.HEALTH!=0) {
+			if (KeyInput.downKey==true && HUD.HEALTH!=0 && Geam.paused!=true) {
 				imgK = 2;
 				try {
 					img = ImageIO.read(new File("PersonWalkD.png"));
@@ -116,7 +116,7 @@ public class Player extends GeamObject {
 				}
 				moved=true;
 			}
-			if (KeyInput.leftKey==true && HUD.HEALTH!=0) {
+			if (KeyInput.leftKey==true && HUD.HEALTH!=0 && Geam.paused!=true) {
 				imgK = 3;
 				try {
 					img = ImageIO.read(new File("PersonWalkL.png"));
@@ -125,7 +125,7 @@ public class Player extends GeamObject {
 				}
 				moved=true;
 			}
-			if (KeyInput.rightKey==true && HUD.HEALTH!=0) {
+			if (KeyInput.rightKey==true && HUD.HEALTH!=0 && Geam.paused != true) {
 				imgK = 4;
 				try {
 					img = ImageIO.read(new File("PersonWalkR"+walkAn+".png"));
@@ -147,7 +147,7 @@ public class Player extends GeamObject {
 				}
 				moved=true;
 			}
-			if (KeyInput.rightKey!=true && KeyInput.leftKey!=true && KeyInput.upKey!=true && KeyInput.downKey!=true && imgK==4) {
+			if (KeyInput.rightKey!=true && KeyInput.leftKey!=true && KeyInput.upKey!=true && KeyInput.downKey!=true && imgK==4 && Geam.paused!=true) {
 				try {
 					img = ImageIO.read(new File("PersonWalkR0.png"));
 				} catch (IOException ex) {

@@ -117,10 +117,10 @@ public class Geam extends Canvas implements Runnable {
 				timer2 += 1000;
 				System.out.println("FPS:"+frames);
 				frames = 0;
-				handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
+				//handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
 				
 				if (HUD.HEALTH>0&&start==true&&paused==false){
-					//handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
+					handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
 					score += 1;
 				}
 			}
@@ -128,7 +128,7 @@ public class Geam extends Canvas implements Runnable {
 			
 			if(System.currentTimeMillis() - timer > 100){
 				timer += 100;
-				if (KeyInput.rightKey == true && Player.walkAn < 5) Player.walkAn += 1;
+				if ((KeyInput.rightKey == true && Player.walkAn < 5) && paused == false && HUD.HEALTH>0&&start==true) Player.walkAn += 1;
 				else Player.walkAn = 0;
 			}
 			// ^ Defines the amount of time between each animation frame of player1
@@ -178,12 +178,7 @@ public class Geam extends Canvas implements Runnable {
 		g.fillRect(0,  0, WIDTH, HEIGHT);
 		// ^ Makes the background
 		
-		if (paused == true){
-			g.setColor(Color.WHITE);
-			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
-			g.drawString("Paused", 600, HEIGHT/2);
-		}
-		// ^ Makes the pause screen
+		
 		
 		if (start == false){
 			g.setColor(Color.WHITE);
@@ -199,6 +194,13 @@ public class Geam extends Canvas implements Runnable {
 			
 		}
 		// ^ Renders any other item in the game
+		
+		if (paused == true){
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+			g.drawString("Paused", 600, HEIGHT/2);
+		}
+		// ^ Makes the pause screen
 		
 		if (HUD.HEALTH == 0){
 			g.setColor(Color.WHITE);
