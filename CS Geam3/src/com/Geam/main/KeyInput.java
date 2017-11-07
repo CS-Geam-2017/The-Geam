@@ -102,7 +102,7 @@ public class KeyInput extends KeyAdapter {
 			}
 				
 
-			if(key == KeyEvent.VK_P && Geam.paused == false && released == true && HUD.HEALTH != 0) Geam.paused = true;
+			if(key == KeyEvent.VK_P && Geam.paused == false && released == true && HUD.HEALTH != 0 && Geam.start==true) Geam.paused = true;
 			else if(key == KeyEvent.VK_P && Geam.paused == true & released == true) Geam.paused = false;
 			released = false;
 		}
