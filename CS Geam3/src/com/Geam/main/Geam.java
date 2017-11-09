@@ -25,6 +25,7 @@ public class Geam extends Canvas implements Runnable {
 	
 	private Random r;
 	private Handler handler;
+	private int frames;
 	
 	
 	public Geam() {
@@ -44,8 +45,8 @@ public class Geam extends Canvas implements Runnable {
 			//handler.addObject(new Player((WIDTH),(HEIGHT), ID.Player));
 		//}
 		
-		handler.addObject(new Player(100, 100, ID.Player));
-		handler.addObject(new Player(100+64, 100, ID.Player2));
+		//handler.addObject(new Player(100, 100, ID.Player));
+		//handler.addObject(new Player(100+64, 100, ID.Player2));
 	}
 	
 	public synchronized void start() {
@@ -70,7 +71,7 @@ public class Geam extends Canvas implements Runnable {
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		long timer2 = System.currentTimeMillis();
-		int frames = 0;
+		//int frames = 0;
 		while(running){
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -91,8 +92,7 @@ public class Geam extends Canvas implements Runnable {
 			
 			if(System.currentTimeMillis() - timer > 100){
 				timer += 100;
-				if (KeyInput.rightKey == true && Player.walkAn < 5) Player.walkAn += 1;
-				else Player.walkAn = 0;
+				
 			}
 		}
 		stop();
@@ -111,9 +111,38 @@ public class Geam extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.GRAY);
+		g.setColor(Color.darkGray);
 		g.fillRect(0,  0, WIDTH, HEIGHT);
-		
+		g.setColor(Color.magenta);
+		g.drawLine(685, 513, 685, 513);
+		for (double a = 0; a<=40; a+=.005) {
+			g.setColor(Color.darkGray);
+			g.fillRect(0,  0, WIDTH, HEIGHT);
+			double t = 0;
+			boolean reached =false;
+			for (double b = 0; b<=2*3.14; b+=0.01) {
+				Color mycolor;
+				if (t<=2*3.14 && reached == false) {
+					mycolor = new Color((int)t*39,66,244);
+					t+=0.02;
+				}
+				else {
+					reached = true;
+					t-=0.02;
+					mycolor = new Color((int)t*39,66,244);
+				}
+				g.setColor(mycolor);
+				g.drawLine(685, 513, (int)(100*(Math.cos(a-(b))-Math.sin(a-b)))+685, (int)(100*(Math.sin(a-4*b)+Math.cos(a-b))+513));
+			}
+			frames++;
+			bs.show();
+			try {
+				thread.sleep(5);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		handler.render(g);
 		
 		g.dispose();
@@ -124,6 +153,8 @@ public class Geam extends Canvas implements Runnable {
 		// TODO Auto-generated method stub
 		new Geam();
 	}
+	
+	
 
 	
 }
