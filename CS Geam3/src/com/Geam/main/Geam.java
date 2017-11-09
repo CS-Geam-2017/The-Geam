@@ -132,7 +132,7 @@ public class Geam extends Canvas implements Runnable {
 					mycolor = new Color((int)t*39,66,244);
 				}
 				g.setColor(mycolor);
-				g.drawLine(685, 513, (int)(100*(Math.cos(a-(b))-Math.sin(a-b)))+685, (int)(100*(Math.sin(a-4*b)+Math.cos(a-b))+513));
+				g.drawLine(685, 400, (int)(100*(Math.cos(a-(b))-Math.sin(a-b)))+685, (int)(100*(Math.sin(a-4*b)+Math.cos(a-b))+400));
 			}
 			frames++;
 			bs.show();
