@@ -115,6 +115,8 @@ public class Geam extends Canvas implements Runnable {
 		g.fillRect(0,  0, WIDTH, HEIGHT);
 		g.setColor(Color.magenta);
 		g.drawLine(685, 513, 685, 513);
+		boolean reached2 = false;
+		double c = 0;
 		for (double a = 0; a<=40; a+=.005) {
 			g.setColor(Color.darkGray);
 			g.fillRect(0,  0, WIDTH, HEIGHT);
@@ -123,21 +125,31 @@ public class Geam extends Canvas implements Runnable {
 			for (double b = 0; b<=2*3.14; b+=0.01) {
 				Color mycolor;
 				if (t<=2*3.14 && reached == false) {
-					mycolor = new Color((int)t*39,66,244);
+					mycolor = new Color((int)t*39,(int)(c*6),244);
 					t+=0.02;
 				}
 				else {
 					reached = true;
 					t-=0.02;
-					mycolor = new Color((int)t*39,66,244);
+					mycolor = new Color((int)t*39,(int)(c*6),244);
 				}
 				g.setColor(mycolor);
 				g.drawLine(685, 400, (int)(100*(Math.cos(a-(b))-Math.sin(a-b)))+685, (int)(100*(Math.sin(a-4*b)+Math.cos(a-b))+400));
 			}
+			if (c<=40 && reached2 == false) {
+				c += 0.05;
+			}
+			else if ((int)(c*6)==0) {
+				reached2 = false;
+			}
+			else {
+				reached2 = true;
+				c-= 0.05;
+			}
 			frames++;
 			bs.show();
 			try {
-				thread.sleep(5);
+				thread.sleep(0);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
