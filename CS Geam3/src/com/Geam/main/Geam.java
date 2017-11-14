@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 import java.util.Random;
 public class Geam extends Canvas implements Runnable {
 
@@ -30,7 +31,7 @@ public class Geam extends Canvas implements Runnable {
 	private Random r;
 	private Handler handler;
 	private int frames;
-	
+	ArrayList<Integer> Walls=new ArrayList<Integer>(1000);
 	
 	public Geam() {
 		this.addKeyListener(new KeyInput(handler));
@@ -92,6 +93,7 @@ public class Geam extends Canvas implements Runnable {
 	}
 	
 	private void render() {
+		Walls.removeAll(Walls);
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null) {
 			this.createBufferStrategy(3);
@@ -113,7 +115,10 @@ public class Geam extends Canvas implements Runnable {
 		g.setColor(Color.blue);
 		for (int i = 1; i<=550;i+=10) {
 			g.fillRect(i, i, 9, 9);
+			Walls.add(i);
+			Walls.add(i);
 		}
+		System.out.println(Walls);
 		g.dispose();
 		bs.show();
 	}
