@@ -3,6 +3,10 @@ package com.Geam.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 public class Geam extends Canvas implements Runnable {
@@ -15,7 +19,7 @@ public class Geam extends Canvas implements Runnable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final int WIDTH = 500, HEIGHT = 500;
+	public static final int WIDTH = 620, HEIGHT = 645;
 	//Reg - WIDTH = 640, HEIGHT = WIDTH / 12*9
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
 	
@@ -97,16 +101,19 @@ public class Geam extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		
 		g.setColor(Color.white);
-		g.fillRect(0,  0, WIDTH, HEIGHT);
-		for (int i = 0; i<=HEIGHT; i+=5) {
+		g.fillRect(0,  0, 600, 600);
+		for (int i = 0; i<=600; i+=10) {
 			g.setColor(Color.black);
-			g.drawLine(0, i, WIDTH, i);
+			g.drawLine(0, i, 600, i);
 		}
-		for (int i = 0; i<=WIDTH; i+=5) {
+		for (int i = 0; i<=600; i+=10) {
 			g.setColor(Color.black);
-			g.drawLine(i, 0, i, HEIGHT);
+			g.drawLine(i, 0, i, 600);
 		}
-		handler.render(g);
+		g.setColor(Color.blue);
+		for (int i = 1; i<=550;i+=10) {
+			g.fillRect(i, i, 9, 9);
+		}
 		g.dispose();
 		bs.show();
 	}
