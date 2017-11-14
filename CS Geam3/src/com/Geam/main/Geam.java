@@ -96,8 +96,16 @@ public class Geam extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.darkGray);
+		g.setColor(Color.white);
 		g.fillRect(0,  0, WIDTH, HEIGHT);
+		for (int i = 0; i<=HEIGHT; i+=5) {
+			g.setColor(Color.black);
+			g.drawLine(0, i, WIDTH, i);
+		}
+		for (int i = 0; i<=WIDTH; i+=5) {
+			g.setColor(Color.black);
+			g.drawLine(i, 0, i, HEIGHT);
+		}
 		handler.render(g);
 		g.dispose();
 		bs.show();
