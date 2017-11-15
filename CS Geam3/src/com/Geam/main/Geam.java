@@ -30,6 +30,8 @@ public class Geam extends Canvas implements Runnable {
 	private Handler handler;
 	private int frames;
 	private ArrayList<Point2D> Walls = new ArrayList<Point2D>();
+	private Point2D start = new Point2D(101,51);
+	private Point2D end = new Point2D(61,101);
 	
 	public Geam() {
 		this.addKeyListener(new KeyInput(handler));
@@ -119,6 +121,10 @@ public class Geam extends Canvas implements Runnable {
 			Walls.add(a);
 			Walls.add(b);
 		}
+		g.setColor(Color.green);
+		g.fillRect((int)start.x, (int)start.y, 9, 9);
+		g.setColor(Color.red);
+		g.fillRect((int)end.x, (int)end.y, 9, 9);
 		g.dispose();
 		bs.show();
 	}
