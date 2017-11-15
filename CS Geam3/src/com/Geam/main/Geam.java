@@ -3,13 +3,11 @@ package com.Geam.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.MouseInfo;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.sun.javafx.geom.Point2D;
 public class Geam extends Canvas implements Runnable {
 
 	/**
@@ -31,7 +29,7 @@ public class Geam extends Canvas implements Runnable {
 	private Random r;
 	private Handler handler;
 	private int frames;
-	ArrayList<Integer> Walls=new ArrayList<Integer>(1000);
+	private ArrayList<Point2D> Walls = new ArrayList<Point2D>();
 	
 	public Geam() {
 		this.addKeyListener(new KeyInput(handler));
@@ -115,10 +113,12 @@ public class Geam extends Canvas implements Runnable {
 		g.setColor(Color.blue);
 		for (int i = 1; i<=550;i+=10) {
 			g.fillRect(i, i, 9, 9);
-			Walls.add(i);
-			Walls.add(i);
+			g.fillRect(i+10, i, 9, 9);
+			Point2D a = new Point2D(i,i);
+			Point2D b = new Point2D(i+10,i);
+			Walls.add(a);
+			Walls.add(b);
 		}
-		System.out.println(Walls);
 		g.dispose();
 		bs.show();
 	}
