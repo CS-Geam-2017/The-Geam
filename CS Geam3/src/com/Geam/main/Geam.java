@@ -41,9 +41,23 @@ public class Geam extends Canvas implements Runnable {
 		// ^ Needs to know what handler is before game is created
 		new Window(WIDTH, HEIGHT, "Geam", this);
 		
-		
+
 		r = new Random();
 	}
+	
+	public ArrayList<Point2D> getSurPoints(Point2D a){
+		ArrayList<Point2D> list = new ArrayList<Point2D>();
+		if (Walls.contains(new Point2D(a.x-10,a.y-10))!= true) list.add(new Point2D(a.x-10,a.y-10));
+		if (Walls.contains(new Point2D(a.x,a.y-10))!= true) list.add(new Point2D(a.x,a.y-10));
+		if (Walls.contains(new Point2D(a.x+10,a.y-10))!= true) list.add(new Point2D(a.x+10,a.y-10));
+		if (Walls.contains(new Point2D(a.x+10,a.y))!= true) list.add(new Point2D(a.x+10,a.y));
+		if (Walls.contains(new Point2D(a.x+10,a.y+10))!= true) list.add(new Point2D(a.x+10,a.y+10));
+		if (Walls.contains(new Point2D(a.x,a.y+10))!= true) list.add(new Point2D(a.x,a.y+10));
+		if (Walls.contains(new Point2D(a.x-10,a.y+10))!= true) list.add(new Point2D(a.x-10,a.y+10));
+		if (Walls.contains(new Point2D(a.x-10,a.y))!= true) list.add(new Point2D(a.x-10,a.y));
+		return list;
+	}
+
 	
 	public synchronized void start() {
 		thread = new Thread(this);
