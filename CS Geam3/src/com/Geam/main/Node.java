@@ -4,14 +4,14 @@ import com.sun.javafx.geom.Point2D;
 
 public class Node {
 	public Point2D xy;
-	public Point2D Parxy;
+	public Node ParN;
 	public int Gcost;
 	public int Hcost;
 	public int Fcost;
 	
-	public Node(Point2D xy, Point2D Parxy, int Gcost, int Hcost, int Fcost) {
+	public Node(Point2D xy, Node ParN, int Gcost, int Hcost, int Fcost) {
 		this.xy = xy;
-		this.Parxy = Parxy;
+		this.ParN = ParN;
 		this.Gcost = Gcost;
 		this.Hcost = Hcost;
 		this.Fcost = Fcost;
@@ -20,8 +20,8 @@ public class Node {
 	public Point2D getXY() {
 		return this.xy;
 	}
-	public Point2D getParXY() {
-		return this.Parxy;
+	public Node getParN() {
+		return this.ParN;
 	}
 	public int getGcost() {
 		return this.Gcost;
@@ -31,5 +31,8 @@ public class Node {
 	}
 	public int getFcost() {
 		return this.Fcost;
+	}
+	public void changeParN(Node newParN) {
+		this.ParN = newParN;
 	}
 }

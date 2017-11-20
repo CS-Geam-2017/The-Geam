@@ -34,6 +34,7 @@ public class Geam extends Canvas implements Runnable {
 	private Point2D end = new Point2D(61,101);
 	private Point2D cur = new Point2D(101,51);
 	private ArrayList<Node> openSet = new ArrayList<Node>();
+	private ArrayList<Node> closedSet = new ArrayList<Node>();
 	
 	public Geam() {
 		this.addKeyListener(new KeyInput(handler));
@@ -49,10 +50,22 @@ public class Geam extends Canvas implements Runnable {
 	
 	public ArrayList<Point2D> getSurPoints(Point2D a){
 		ArrayList<Point2D> list = new ArrayList<Point2D>();
+		boolean added0 = false;
+		boolean added1 = false;
+		boolean added2 = false;
+		boolean added3 = false;
+		boolean added4 = false;
+		boolean added5 = false;
+		boolean added6 = false;
+		boolean added7 = false;
+		boolean added8 = false;
 		for (int i = 0; i<=openSet.size(); i++) {
-			if (openSet.get(i).xy != a)
+			if (openSet.get(i).xy != a && added0 == false) {
 				if (Walls.contains(new Point2D(a.x-10,a.y-10))!= true) list.add(new Point2D(a.x-10,a.y-10));
-			if (Walls.contains(new Point2D(a.x,a.y-10))!= true) list.add(new Point2D(a.x,a.y-10));
+			}
+			if (openSet.get(i).xy != a && added0 == false) {
+				if (Walls.contains(new Point2D(a.x,a.y-10))!= true) list.add(new Point2D(a.x,a.y-10));
+			}
 			if (Walls.contains(new Point2D(a.x+10,a.y-10))!= true) list.add(new Point2D(a.x+10,a.y-10));
 			if (Walls.contains(new Point2D(a.x+10,a.y))!= true) list.add(new Point2D(a.x+10,a.y));
 			if (Walls.contains(new Point2D(a.x+10,a.y+10))!= true) list.add(new Point2D(a.x+10,a.y+10));
