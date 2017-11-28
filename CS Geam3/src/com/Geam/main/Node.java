@@ -6,15 +6,15 @@ public class Node {
 	public Point2D xy;
 	public Node ParN;
 	public int Gcost;
-	public int Hcost;
-	public int Fcost;
+	public double Hcost;
+	public double Fcost;
 	
-	public Node(Point2D xy, Node ParN, int Gcost, int Hcost, int Fcost) {
+	public Node(Point2D xy, Node ParN, int Gcost, double d, double e) {
 		this.xy = xy;
 		this.ParN = ParN;
 		this.Gcost = Gcost;
-		this.Hcost = Hcost;
-		this.Fcost = Fcost;
+		this.Hcost = d;
+		this.Fcost = e;
 	}
 	
 	public Point2D getXY() {
@@ -26,10 +26,10 @@ public class Node {
 	public int getGcost() {
 		return this.Gcost;
 	}
-	public int getHcost() {
+	public double getHcost() {
 		return this.Hcost;
 	}
-	public int getFcost() {
+	public double getFcost() {
 		return this.Fcost;
 	}
 	public void changeParN(Node newParN) {

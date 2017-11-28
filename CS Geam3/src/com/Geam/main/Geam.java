@@ -29,9 +29,9 @@ public class Geam extends Canvas implements Runnable {
 	private Handler handler;
 	private int frames;
 	private ArrayList<Point2D> Walls = new ArrayList<Point2D>();
-	private Node start = new Node(new Point2D(101,51),null , 0, getDist(new Point2D(101,51),new Point2D(61,101), getDist(new Point2D(101,51),new Point2D(61,101)) ;
-	private Node end = new Point2D(61,101);
-	private Node cur = new Point2D(101,51);
+	private Node start = new Node(new Point2D(101,51),null, 0, getDist(new Point2D(101,51),new Point2D(61,101)), getDist(new Point2D(101,51),new Point2D(61,101))) ;
+	private Node end = new Node(new Point2D(61,101), null, 10000, 0, 10000);
+	private Node cur = start;
 	private ArrayList<Node> openSet = new ArrayList<Node>();
 	private ArrayList<Node> closedSet = new ArrayList<Node>();
 	
