@@ -25,12 +25,11 @@ public class Geam extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	
-	
 	private Random r;
 	private Handler handler;
 	private int frames;
 	private ArrayList<Point2D> Walls = new ArrayList<Point2D>();
-	private Node start = new Point2D(101,51);
+	private Node start = new Node(new Point2D(101,51),null , 0, getDist(new Point2D(101,51),new Point2D(61,101), getDist(new Point2D(101,51),new Point2D(61,101)) ;
 	private Node end = new Point2D(61,101);
 	private Node cur = new Point2D(101,51);
 	private ArrayList<Node> openSet = new ArrayList<Node>();
@@ -44,15 +43,17 @@ public class Geam extends Canvas implements Runnable {
 		// ^ Needs to know what handler is before game is created
 		new Window(WIDTH, HEIGHT, "Geam", this);
 		
-
 		r = new Random();
+	}
+	public double getDist(Point2D a,Point2D b) {
+		return Math.sqrt(Math.pow((Math.abs(a.x-b.x)),2.0) + Math.pow((Math.abs((a.y-b.y))), 2.0));
 	}
 	
 	public ArrayList<Point2D> getSurPoints(Point2D a){
 		ArrayList<Point2D> list = new ArrayList<Point2D>();
 		for (int i = 0; i<=openSet.size(); i++) {
 			if (openSet.get(i).xy != a) {
-				if (Walls.contains(new Point2D(a.x-10,a.y-10))!= true) openSet.add(new Node(new Point2D(a.x-10,a.y-10), a, i, i, i));
+				//if (Walls.contains(new Point2D(a.x-10,a.y-10))!= true) openSet.add(new Node(new Point2D(a.x-10,a.y-10), a, i, i, i));
 			}
 			if (openSet.get(i).xy != a) {
 				if (Walls.contains(new Point2D(a.x,a.y-10))!= true) list.add(new Point2D(a.x,a.y-10));
@@ -145,10 +146,10 @@ public class Geam extends Canvas implements Runnable {
 			Walls.add(b);
 		}
 		g.setColor(Color.green);
-		g.fillRect((int)start.x, (int)start.y, 9, 9);
+		g.fillRect((int)start.xy.x, (int)start.xy.y, 9, 9);
 		g.setColor(Color.red);
 		
-		g.fillRect((int)end.x, (int)end.y, 9, 9);
+		g.fillRect((int)end.xy.x, (int)end.xy.y, 9, 9);
 		g.dispose();
 		bs.show();
 	}
