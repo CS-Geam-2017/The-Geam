@@ -33,6 +33,7 @@ public class Node {
 		return this.Fcost;
 	}
 	public void changeParN(Node newParN) {
+		this.Fcost = (newParN.Gcost + Geam.getDist(this.xy,new Point2D(61,101)));
 		this.ParN = newParN;
 	}
 }

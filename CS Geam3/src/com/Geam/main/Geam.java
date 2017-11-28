@@ -29,9 +29,9 @@ public class Geam extends Canvas implements Runnable {
 	private Handler handler;
 	private int frames;
 	private ArrayList<Point2D> Walls = new ArrayList<Point2D>();
-	private Node start = new Node(new Point2D(101,51),null, 0, getDist(new Point2D(101,51),new Point2D(61,101)), getDist(new Point2D(101,51),new Point2D(61,101))) ;
-	private Node end = new Node(new Point2D(61,101), null, 10000, 0, 10000);
-	private Node cur = start;
+	public Node start = new Node(new Point2D(101,51),null, 0, getDist(new Point2D(101,51),new Point2D(61,101)), getDist(new Point2D(101,51),new Point2D(61,101))) ;
+	public Node end = new Node(new Point2D(61,101), null, 10000, 0, 10000);
+	public Node cur = start;
 	private ArrayList<Node> openSet = new ArrayList<Node>();
 	private ArrayList<Node> closedSet = new ArrayList<Node>();
 	
@@ -45,25 +45,30 @@ public class Geam extends Canvas implements Runnable {
 		
 		r = new Random();
 	}
-	public double getDist(Point2D a,Point2D b) {
+	public static double getDist(Point2D a,Point2D b) {
 		return Math.sqrt(Math.pow((Math.abs(a.x-b.x)),2.0) + Math.pow((Math.abs((a.y-b.y))), 2.0));
 	}
 	
-	public ArrayList<Point2D> getSurPoints(Point2D a){
+	public ArrayList<Point2D> getSurPoints(Node a){
 		ArrayList<Point2D> list = new ArrayList<Point2D>();
 		for (int i = 0; i<=openSet.size(); i++) {
-			if (openSet.get(i).xy != a) {
+			if (openSet.get(i).xy != new Point2D(a.xy.x-10,a.xy.y-10)) {
 				//if (Walls.contains(new Point2D(a.x-10,a.y-10))!= true) openSet.add(new Node(new Point2D(a.x-10,a.y-10), a, i, i, i));
 			}
-			if (openSet.get(i).xy != a) {
-				if (Walls.contains(new Point2D(a.x,a.y-10))!= true) list.add(new Point2D(a.x,a.y-10));
+			else {
+				if(openSet.get(i).Fcost>(a.Gcost+14+getDist(new Point2D(a.xy.x-10,a.xy.y-10),end.xy))) {
+					openSet.get(i).changeParN(a);
+				}
 			}
-			if (Walls.contains(new Point2D(a.x+10,a.y-10))!= true) list.add(new Point2D(a.x+10,a.y-10));
-			if (Walls.contains(new Point2D(a.x+10,a.y))!= true) list.add(new Point2D(a.x+10,a.y));
-			if (Walls.contains(new Point2D(a.x+10,a.y+10))!= true) list.add(new Point2D(a.x+10,a.y+10));
-			if (Walls.contains(new Point2D(a.x,a.y+10))!= true) list.add(new Point2D(a.x,a.y+10));
-			if (Walls.contains(new Point2D(a.x-10,a.y+10))!= true) list.add(new Point2D(a.x-10,a.y+10));
-			if (Walls.contains(new Point2D(a.x-10,a.y))!= true) list.add(new Point2D(a.x-10,a.y));
+			if (openSet.get(i).xy != a.xy) {
+				if (Walls.contains(new Point2D(a.xy.x,a.xy.y-10))!= true) list.add(new Point2D(a.xy.x,a.xy.y-10));
+			}
+			if (Walls.contains(new Point2D(a.xy.x+10,a.xy.y-10))!= true) list.add(new Point2D(a.xy.x+10,a.xy.y-10));
+			if (Walls.contains(new Point2D(a.xy.x+10,a.xy.y))!= true) list.add(new Point2D(a.xy.x+10,a.xy.y));
+			if (Walls.contains(new Point2D(a.xy.x+10,a.xy.y+10))!= true) list.add(new Point2D(a.xy.x+10,a.xy.y+10));
+			if (Walls.contains(new Point2D(a.xy.x,a.xy.y+10))!= true) list.add(new Point2D(a.xy.x,a.xy.y+10));
+			if (Walls.contains(new Point2D(a.xy.x-10,a.xy.y+10))!= true) list.add(new Point2D(a.xy.x-10,a.xy.y+10));
+			if (Walls.contains(new Point2D(a.xy.x-10,a.xy.y))!= true) list.add(new Point2D(a.xy.x-10,a.xy.y));
 		}
 		return list;
 	}
@@ -148,6 +153,10 @@ public class Geam extends Canvas implements Runnable {
 		g.setColor(Color.green);
 		g.fillRect((int)start.xy.x, (int)start.xy.y, 9, 9);
 		g.setColor(Color.red);
+		g.setColor(Color.cyan);
+		for(int i = 0; i<=openSet.size();i++) {
+			g.fillRect((int)openSet.get(i).xy.x, (int)openSet.get(i).xy.y, 9, 9);
+		}
 		
 		g.fillRect((int)end.xy.x, (int)end.xy.y, 9, 9);
 		g.dispose();
