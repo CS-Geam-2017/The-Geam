@@ -279,21 +279,21 @@ public class Geam extends Canvas implements Runnable {
 			Walls.add(new Point2D(i,1));
 			Walls.add(new Point2D(1,i));
 		}
-		for (int i = 1; i<=200;i+=10) {
-			g.fillRect(i, i, 9, 9);
-			g.fillRect(i+10, i, 9, 9);
-			Point2D a = new Point2D(i,i);
-			Point2D b = new Point2D(i+10,i);
-			Walls.add(a);
-			Walls.add(b);
-		}
+		//for (int i = 1; i<=200;i+=10) {
+			//g.fillRect(i, i, 9, 9);
+			//g.fillRect(i+10, i, 9, 9);
+			//Point2D a = new Point2D(i,i);
+			//Point2D b = new Point2D(i+10,i);
+			//Walls.add(a);
+			//Walls.add(b);
+		//}
 		Node nextNode = new Node(null, null, 0, 0, 100000000);
 		int nextNodePlace = 0;
 		//System.out.println(openSet.size());
-		g.setColor(Color.magenta);
-		for(int i = 0; i<closedSet.size();i++) {
-			g.fillRect((int)closedSet.get(i).x, (int)closedSet.get(i).y, 9, 9);
-		}
+		//g.setColor(Color.magenta);
+		//for(int i = 0; i<closedSet.size();i++) {
+			//g.fillRect((int)closedSet.get(i).x, (int)closedSet.get(i).y, 9, 9);
+		//}
 		g.setColor(Color.cyan);
 		for(int i = 0; i<openSet.size();i++) {
 			//System.out.println(i);
