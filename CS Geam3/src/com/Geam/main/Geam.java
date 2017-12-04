@@ -52,16 +52,6 @@ public class Geam extends Canvas implements Runnable {
 		r = new Random();
 		
 		
-		handler.addObject(new Player(100, 100, ID.Player, handler));
-		handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
-		shield = true;
-		handler.addObject(new Shield(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.Shield, handler));
-		handler.addObject(new RangeEn(WIDTH-300, HEIGHT-150, ID.RangeEn, handler));
-		for (int o = 0 ; o < 15 ; o++) {
-			handler.addObject(new BasicEnemy(r.nextInt(Geam.WIDTH-50), r.nextInt(Geam.HEIGHT-50), ID.BasicEnemy, handler));
-		}
-		// ^ Adds all of our objects into the game
-		
 	}
 	
 	public synchronized void start() {
@@ -116,43 +106,9 @@ public class Geam extends Canvas implements Runnable {
 			if(System.currentTimeMillis() - timer2 > 1000){
 				timer2 += 1000;
 				System.out.println("FPS:"+frames);
-				frames = 0;
-				//handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
-				
-				if (HUD.HEALTH>0&&start==true&&paused==false){
-					handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
-					score += 1;
+				frames = 0;				
 				}
 			}
-			// ^ Defines everything that happens every 1 sec, including reseting the FPS counter and increasing the score & # of balls
-			
-			if(System.currentTimeMillis() - timer > 100){
-				timer += 100;
-				if ((KeyInput.rightKey == true && Player.walkAn < 5) && paused == false && HUD.HEALTH>0&&start==true) Player.walkAn += 1;
-				else Player.walkAn = 0;
-			}
-			// ^ Defines the amount of time between each animation frame of player1
-			
-			if(System.currentTimeMillis()- PowerT > 10000){
-				PowerT += 10000;
-				if (shield == false && Shield.pickedUp == false && start == true && paused != true && HUD.HEALTH!=0){
-					shield = true;
-					handler.addObject(new Shield(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.Shield, handler));
-				}
-				else if (shield == true && Shield.pickedUp == true){
-					Shield.pickedUp=false;
-					shield = false;
-					for (int i = 0; i < Handler.object.size(); i++) {
-						GeamObject tempObject = Handler.object.get(i);
-						if (tempObject.id == ID.Shield){
-							Handler.object.remove(tempObject);
-						}
-					}
-				}
-			}
-			// ^ Defines the time between each shield pickup and amount of time that you have the shield
-			
-		}
 		stop();
 	}
 	
@@ -176,17 +132,7 @@ public class Geam extends Canvas implements Runnable {
 		
 		g.setColor(Color.GRAY);
 		g.fillRect(0,  0, WIDTH, HEIGHT);
-		// ^ Makes the background
-		
-		
-		
-		if (start == false){
-			g.setColor(Color.WHITE);
-			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
-			g.drawString("Press space to start", 600, HEIGHT/2);
-		}
-		// ^ Makes the start screen
-		
+		// ^ Makes the background	
 		if (start == true) {
 			handler.render(g);
 			
@@ -194,22 +140,6 @@ public class Geam extends Canvas implements Runnable {
 			
 		}
 		// ^ Renders any other item in the game
-		
-		if (paused == true){
-			g.setColor(Color.WHITE);
-			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
-			g.drawString("Paused", 600, HEIGHT/2);
-		}
-		// ^ Makes the pause screen
-		
-		if (HUD.HEALTH == 0){
-			g.setColor(Color.WHITE);
-			g.setFont(new Font("Impact", Font.BOLD, 100));
-			g.drawString("GAME OVER", 400, 400);
-			g.setFont(new Font("Comic Sans MS",Font.BOLD , 30));
-			g.drawString("Space to Restart", 540, 500);
-		}
-		// ^ Makes the game over screen
 		
 		g.dispose();
 		bs.show();
