@@ -29,8 +29,8 @@ public class Geam extends Canvas implements Runnable {
 	private Handler handler;
 	private int frames;
 	private static ArrayList<Point2D> Walls = new ArrayList<Point2D>();
-	public static Node start = new Node(new Point2D(101,51),null, 0, getDist(new Point2D(101,51),new Point2D(61,101)), getDist(new Point2D(101,51),new Point2D(61,101))) ;
-	public static Node end = new Node(new Point2D(401,101), null, 10000, 0, 10000);
+	public static Node start = new Node(new Point2D(101,51),null, 0, getDist(new Point2D(101,51),new Point2D(121,201)), getDist(new Point2D(101,51),new Point2D(121,201))) ;
+	public static Node end = new Node(new Point2D(241,51), null, 10000, 0, 10000);
 	public static Node cur = start;
 	private static ArrayList<Node> openSet = new ArrayList<Node>();
 	private static ArrayList<Point2D> openSetXY = new ArrayList<Point2D>();
@@ -41,6 +41,7 @@ public class Geam extends Canvas implements Runnable {
 		// ^ Tells computer to listen for key inputs
 		//System.out.println(openSet.size());
 		openSet.add(start);
+		//System.out.println(getDist(end.xy,start.xy));
 		closedSet.add(new Point2D(200,200));
 		getSurPoints(start);
 		openSet.remove(0);
@@ -51,7 +52,7 @@ public class Geam extends Canvas implements Runnable {
 		r = new Random();
 	}
 	public static double getDist(Point2D a,Point2D b) {
-		return Math.sqrt(Math.pow((Math.abs(a.x-b.x)),2.0) + Math.pow((Math.abs((a.y-b.y))), 2.0));
+		return (Math.sqrt(Math.pow(a.x-b.x,2.0) + Math.pow((a.y-b.y), 2.0)))*2;
 	}
 	
 	public static void getSurPoints(Node a){
@@ -81,7 +82,7 @@ public class Geam extends Canvas implements Runnable {
 				}
 				else {
 					if(Walls.contains(new Point2D(a.xy.x-10,a.xy.y-10))!= true) {
-						if(openSet.get(i).Fcost>(a.Gcost+14+getDist(new Point2D(a.xy.x-10,a.xy.y-10),end.xy))) {
+						if(openSet.get(i).Fcost>(a.Gcost+14+getDist(new Point2D(a.xy.x-10,a.xy.y-10),end.xy))&& getDist(openSet.get(i).xy,a.xy) <=15) {
 							openSet.get(i).changeParN(a);
 						}
 					}
@@ -97,11 +98,12 @@ public class Geam extends Canvas implements Runnable {
 				}
 				else {
 					if(Walls.contains(new Point2D(a.xy.x,a.xy.y-10))!= true) {
-						if(openSet.get(i).Fcost>(a.Gcost+10+getDist(new Point2D(a.xy.x,a.xy.y-10),end.xy))) {
+						if(openSet.get(i).Fcost>(a.Gcost+10+getDist(new Point2D(a.xy.x,a.xy.y-10),end.xy))&& getDist(openSet.get(i).xy,a.xy) <=15) {
 							openSet.get(i).changeParN(a);
 						}
 					}
 				}
+				
 				
 				
 				if (openSetXY.contains(new Point2D(a.xy.x+10,a.xy.y-10)) != true && added2 != true && closedSet.contains(new Point2D(a.xy.x+10,a.xy.y-10)) != true) {
@@ -113,7 +115,7 @@ public class Geam extends Canvas implements Runnable {
 				}
 				else {
 					if(Walls.contains(new Point2D(a.xy.x+10,a.xy.y-10))!= true) {
-						if(openSet.get(i).Fcost>(a.Gcost+14+getDist(new Point2D(a.xy.x+10,a.xy.y-10),end.xy))) {
+						if(openSet.get(i).Fcost>(a.Gcost+14+getDist(new Point2D(a.xy.x+10,a.xy.y-10),end.xy))&& getDist(openSet.get(i).xy,a.xy) <=15) {
 							openSet.get(i).changeParN(a);
 						}
 					}
@@ -128,7 +130,7 @@ public class Geam extends Canvas implements Runnable {
 					}
 				}
 				else {
-					if(Walls.contains(new Point2D(a.xy.x+10,a.xy.y))!= true) {
+					if(Walls.contains(new Point2D(a.xy.x+10,a.xy.y))!= true&& getDist(openSet.get(i).xy,a.xy) <=15) {
 						if(openSet.get(i).Fcost>(a.Gcost+10+getDist(new Point2D(a.xy.x+10,a.xy.y),end.xy))) {
 							openSet.get(i).changeParN(a);
 						}
@@ -145,7 +147,7 @@ public class Geam extends Canvas implements Runnable {
 				}
 				else {
 					if(Walls.contains(new Point2D(a.xy.x+10,a.xy.y+10))!= true) {
-						if(openSet.get(i).Fcost>(a.Gcost+14+getDist(new Point2D(a.xy.x+10,a.xy.y+10),end.xy))) {
+						if(openSet.get(i).Fcost>(a.Gcost+14+getDist(new Point2D(a.xy.x+10,a.xy.y+10),end.xy))&& getDist(openSet.get(i).xy,a.xy) <=15) {
 							openSet.get(i).changeParN(a);
 						}
 					}
@@ -161,7 +163,7 @@ public class Geam extends Canvas implements Runnable {
 				}
 				else {
 					if(Walls.contains(new Point2D(a.xy.x,a.xy.y+10))!= true) {
-						if(openSet.get(i).Fcost>(a.Gcost+10+getDist(new Point2D(a.xy.x,a.xy.y+10),end.xy))) {
+						if(openSet.get(i).Fcost>(a.Gcost+10+getDist(new Point2D(a.xy.x,a.xy.y+10),end.xy))&& getDist(openSet.get(i).xy,a.xy) <=15) {
 							openSet.get(i).changeParN(a);
 						}
 					}
@@ -177,7 +179,7 @@ public class Geam extends Canvas implements Runnable {
 				}
 				else {
 					if(Walls.contains(new Point2D(a.xy.x-10,a.xy.y+10))!= true) {
-						if(openSet.get(i).Fcost>(a.Gcost+14+getDist(new Point2D(a.xy.x-10,a.xy.y+10),end.xy))) {
+						if(openSet.get(i).Fcost>(a.Gcost+14+getDist(new Point2D(a.xy.x-10,a.xy.y+10),end.xy))&& getDist(openSet.get(i).xy,a.xy) <=15) {
 							openSet.get(i).changeParN(a);
 						}
 					}
@@ -193,7 +195,7 @@ public class Geam extends Canvas implements Runnable {
 				}
 				else {
 					if(Walls.contains(new Point2D(a.xy.x-10,a.xy.y))!= true) {
-						if(openSet.get(i).Fcost>(a.Gcost+10+getDist(new Point2D(a.xy.x-10,a.xy.y),end.xy))) {
+						if(openSet.get(i).Fcost>(a.Gcost+10+getDist(new Point2D(a.xy.x-10,a.xy.y),end.xy))&& getDist(openSet.get(i).xy,a.xy) <=15) {
 							openSet.get(i).changeParN(a);
 						}
 					}
@@ -279,6 +281,18 @@ public class Geam extends Canvas implements Runnable {
 			Walls.add(new Point2D(i,1));
 			Walls.add(new Point2D(1,i));
 		}
+		for(int i = 1; i<300; i+=10) {
+			g.fillRect(201, i, 9, 9);
+			Walls.add(new Point2D(201,i));
+		}
+		for(int i = 1; i<400; i+=10) {
+			g.fillRect(i, 321, 9, 9);
+			Walls.add(new Point2D(i,321));
+		}
+		for(int i = 31; i<321; i+=10) {
+			g.fillRect(251, i, 9, 9);
+			Walls.add(new Point2D(251,i));
+		}
 		//for (int i = 1; i<=200;i+=10) {
 			//g.fillRect(i, i, 9, 9);
 			//g.fillRect(i+10, i, 9, 9);
@@ -313,11 +327,28 @@ public class Geam extends Canvas implements Runnable {
 		g.fillRect((int)start.xy.x, (int)start.xy.y, 9, 9);
 		g.setColor(Color.red);
 		g.fillRect((int)end.xy.x, (int)end.xy.y, 9, 9);
-		System.out.println(openSet.size());
+		//System.out.println(openSet.size());
+		//System.out.println((nextNode.Hcost)+" "+nextNode.Fcost);
 		if(!(closedSet.contains(end.xy))) {
 			getSurPoints(nextNode);
 		}
-		else {stop();}
+		else {
+			//System.out.println("Working");
+			Node a = nextNode;
+			while (a != start) {
+				//System.out.println("hi");
+				a = a.ParN;
+				//System.out.println(a.xy);
+				g.setColor(Color.magenta);
+				g.fillRect((int)a.xy.x,(int) a.xy.y, 9, 9);
+				bs.show();
+			}
+			//System.out.println("Hello");
+			g.dispose();
+			bs.show();
+			stop();
+		}
+		//System.out.println("working");
 		g.setColor(Color.black);
 		g.fillRect((int)nextNode.xy.x, (int)nextNode.xy.y, 9, 9);
 		g.dispose();
