@@ -8,15 +8,7 @@ public class Handler {
 
 	static LinkedList<GeamObject> object  = new LinkedList<GeamObject>();
 	
-	public void tick(){
-		for(int i = 0; i < object.size(); i++){
-			GeamObject tempObject = object.get(i);
-			
-			if (tempObject.id == ID.Shield) {
-				tempObject.tick();
-			}
-		
-		}
+	public void tick() {
 		for(int i = 0; i < object.size(); i++){
 			GeamObject tempObject = object.get(i);
 			
