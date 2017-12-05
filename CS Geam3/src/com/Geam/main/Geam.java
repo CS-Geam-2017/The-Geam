@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
+import java.util.*;
 public class Geam extends Canvas implements Runnable {
 
 	/**
@@ -23,8 +24,10 @@ public class Geam extends Canvas implements Runnable {
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
 	
 	public static boolean start = false;
-	public static String secret;
+	public static String secret = "HELLO WORLD";
 	public static String guessed;
+	public static ArrayList<Integer> guessedKC = new ArrayList<Integer>();
+	public static String lets = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
 	
 	
 	public static long PowerT = System.currentTimeMillis();
@@ -40,8 +43,10 @@ public class Geam extends Canvas implements Runnable {
 	public static int Pause = 0;
 	
 	public Geam() {
+		start=true;
 		this.addKeyListener(new KeyInput(handler));
 		// ^ Tells computer to listen for key inputs
+		guessed="";
 		
 		handler = new Handler();
 		// ^ Needs to know what handler is before game is created
