@@ -25,5 +25,9 @@ public class HUD {
 			}
 			g.drawString(""+Geam.guessed.charAt(i), (a*20)+1000, (b*22)+250);
 		}
+		g.drawString(""+wrongs, 1000, 100);
+		for(int i = 0; i<Geam.secret.length();i++) {
+			
+		}
 	}
 }

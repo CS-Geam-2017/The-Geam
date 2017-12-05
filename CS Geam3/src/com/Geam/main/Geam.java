@@ -90,7 +90,6 @@ public class Geam extends Canvas implements Runnable {
 		double ns = 1000000000 / amountOfTicks;
 		// ^ Defines how many nano-seconds are in a second
 		double delta = 0;
-		long timer = System.currentTimeMillis();
 		long timer2 = System.currentTimeMillis();
 		// ^ Adding timers for things in the game
 		int frames = 0;

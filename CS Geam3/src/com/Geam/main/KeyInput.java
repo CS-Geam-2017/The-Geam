@@ -22,10 +22,14 @@ public class KeyInput extends KeyAdapter {
 		r = new Random();
 		
 		handler = new Handler();
+		if(!(Geam.secret.contains(""+(char)key))& Geam.lets.contains(""+(char)key)&&(!(Geam.guessedKC.contains(key)))){
+			HUD.wrongs+=1;
+		}
 		if (!(Geam.guessedKC.contains(key))&& Geam.lets.contains(""+(char)key)) {
 			Geam.guessed += (char)key;
 			Geam.guessedKC.add(key);
 		}
+		
 		
 		if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 		released = false;
