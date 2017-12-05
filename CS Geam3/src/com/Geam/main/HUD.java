@@ -9,19 +9,9 @@ public class HUD {
 	static boolean hp = true;
 	public static void tick() {
 		
-		HEALTH = Geam.clamp(HEALTH, 0, 100);
 	}
 	
 	public static void render(Graphics g) {
-		g.setColor(Color.black);
-		g.fillRect(15,15, 200, 32);
-		g.setColor(Color.green);
-		g.fillRect(15,15, HEALTH * 2, 32);
-		g.setColor(Color.white);
-		g.drawRect(15, 15, 200, 32);
 		
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
-		g.drawString(""+Geam.score, 1100, 50);
 	}
 }

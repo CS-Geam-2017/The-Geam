@@ -23,9 +23,9 @@ public class Geam extends Canvas implements Runnable {
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
 	
 	public static boolean start = false;
-	public static boolean paused = false;
-	public static int score = 0;
-	public static boolean shield = false;
+	public static String secret;
+	public static String guessed;
+	
 	
 	public static long PowerT = System.currentTimeMillis();
 	
@@ -113,7 +113,7 @@ public class Geam extends Canvas implements Runnable {
 	}
 	
 	private void tick() {
-		if (start == true && paused == false && HUD.HEALTH != 0){
+		if (start == true){
 			handler.tick();
 			HUD.tick();
 		}
@@ -159,7 +159,6 @@ public class Geam extends Canvas implements Runnable {
 	}
 	
 	public static void main(String[] args) {
-		score = 0;
 		new Geam();
 		// ^ The start of the program, runs when start is pressed, and creates a new instance of Geam
 	}
