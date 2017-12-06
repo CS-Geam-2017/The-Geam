@@ -26,8 +26,18 @@ public class HUD {
 			g.drawString(""+Geam.guessed.charAt(i), (a*20)+1000, (b*22)+250);
 		}
 		g.drawString(""+wrongs, 1000, 100);
+		String display = "";
 		for(int i = 0; i<Geam.secret.length();i++) {
-			
+			if(' ' == Geam.secret.charAt(i)) {
+				display+=" ";
+			}
+			else if(Geam.guessed.contains(""+Geam.secret.charAt(i))){
+				display+=Geam.secret.charAt(i);
+			}
+			else {
+				display+="_";
+			}
 		}
+		g.drawString(display, 500, 300);
 	}
 }
