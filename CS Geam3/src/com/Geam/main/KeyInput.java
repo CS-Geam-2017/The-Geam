@@ -22,12 +22,25 @@ public class KeyInput extends KeyAdapter {
 		r = new Random();
 		
 		handler = new Handler();
-		if(!(Geam.secret.contains(""+(char)key))& Geam.lets.contains(""+(char)key)&&(!(Geam.guessedKC.contains(key)))){
+		if(!(Geam.secret.contains(""+(char)key))& Geam.lets.contains(""+(char)key)&&(!(Geam.guessedKC.contains(key)))&& HUD.wrongs<6 && !(HUD.win)){
 			HUD.wrongs+=1;
 		}
-		if (!(Geam.guessedKC.contains(key))&& Geam.lets.contains(""+(char)key)) {
+		if (!(Geam.guessedKC.contains(key))&& Geam.lets.contains(""+(char)key)&& HUD.wrongs<6 && !(HUD.win)) {
 			Geam.guessed += (char)key;
 			Geam.guessedKC.add(key);
+		}
+		if(key == KeyEvent.VK_SPACE && HUD.wrongs>=6 && !(HUD.win)) {
+			Geam.secret = Geam.words.get(r.nextInt(10));
+			HUD.wrongs=0;
+			Geam.guessed = "";
+			Geam.guessedKC.clear();
+		}
+		if(key == KeyEvent.VK_SPACE && HUD.win) {
+			Geam.secret = Geam.words.get(r.nextInt(10));
+			HUD.wrongs=0;
+			Geam.guessed = "";
+			Geam.guessedKC.clear();
+			HUD.win = false;
 		}
 		
 		

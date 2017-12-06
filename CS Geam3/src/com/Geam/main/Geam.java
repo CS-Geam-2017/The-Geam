@@ -24,7 +24,8 @@ public class Geam extends Canvas implements Runnable {
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
 	
 	public static boolean start = false;
-	public static String secret = "HELLO WORLD";
+	public static ArrayList<String> words = new ArrayList<String>();
+	public static String secret = "";
 	public static String guessed;
 	public static ArrayList<Integer> guessedKC = new ArrayList<Integer>();
 	public static String lets = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
@@ -44,6 +45,18 @@ public class Geam extends Canvas implements Runnable {
 	
 	public Geam() {
 		start=true;
+		words.add("ROBOTICS");
+		words.add("EMP");
+		words.add("COMPUTER SCIENCE");
+		words.add("PROGRAMMING");
+		words.add("JAVA");
+		words.add("FIRST");
+		words.add("MOTOR");
+		words.add("FRC");
+		words.add("ELECTRONICS");
+		words.add("PARK HILL SOUTH");
+		r = new Random();
+		secret = words.get(r.nextInt(10));
 		this.addKeyListener(new KeyInput(handler));
 		// ^ Tells computer to listen for key inputs
 		guessed="";
@@ -53,8 +66,6 @@ public class Geam extends Canvas implements Runnable {
 		
 		new Window(WIDTH, HEIGHT, "Geam", this);
 		// ^ Creates a new canvas with name "Geam"
-		
-		r = new Random();
 		
 		
 	}
