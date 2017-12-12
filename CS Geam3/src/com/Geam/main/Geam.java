@@ -55,8 +55,21 @@ public class Geam extends Canvas implements Runnable {
 		words.add("FRC");
 		words.add("ELECTRONICS");
 		words.add("PARK HILL SOUTH");
+		words.add("autonomous".toUpperCase());
+		words.add("chassis".toUpperCase());
+		words.add("drive train".toUpperCase());
+		words.add("joint".toUpperCase());
+		words.add("mechanical".toUpperCase());
+		words.add("operator".toUpperCase());
+		words.add("program".toUpperCase());
+		words.add("sensor".toUpperCase());
+		words.add("software".toUpperCase());
+		words.add("solenoid".toUpperCase());
+		
+		
+		
 		r = new Random();
-		secret = words.get(r.nextInt(10));
+		secret = words.get(r.nextInt(words.size()));
 		this.addKeyListener(new KeyInput(handler));
 		// ^ Tells computer to listen for key inputs
 		guessed="";

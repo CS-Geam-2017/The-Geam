@@ -30,13 +30,13 @@ public class KeyInput extends KeyAdapter {
 			Geam.guessedKC.add(key);
 		}
 		if(key == KeyEvent.VK_SPACE && HUD.wrongs>=6 && !(HUD.win)) {
-			Geam.secret = Geam.words.get(r.nextInt(10));
+			Geam.secret = Geam.words.get(r.nextInt(Geam.words.size()));
 			HUD.wrongs=0;
 			Geam.guessed = "";
 			Geam.guessedKC.clear();
 		}
 		if(key == KeyEvent.VK_SPACE && HUD.win) {
-			Geam.secret = Geam.words.get(r.nextInt(10));
+			Geam.secret = Geam.words.get(r.nextInt(Geam.words.size()));
 			HUD.wrongs=0;
 			Geam.guessed = "";
 			Geam.guessedKC.clear();
