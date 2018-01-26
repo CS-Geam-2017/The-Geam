@@ -15,7 +15,7 @@ public class Geam extends Canvas implements Runnable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final int WIDTH = 1370, HEIGHT = WIDTH / 12*9;
+	public static final int WIDTH = 1000, HEIGHT = 700;
 	//Reg - WIDTH = 640, HEIGHT = WIDTH / 12*9
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
 	
@@ -45,7 +45,7 @@ public class Geam extends Canvas implements Runnable {
 		//}
 		
 		handler.addObject(new Player(100, 100, ID.Player));
-		handler.addObject(new Player(100+64, 100, ID.Player2));
+		handler.addObject(new Platform(400, 600, ID.Platform));
 	}
 	
 	public synchronized void start() {
@@ -89,12 +89,7 @@ public class Geam extends Canvas implements Runnable {
 				frames = 0;
 			}
 			
-			if(System.currentTimeMillis() - timer > 100){
-				timer += 100;
-				if (KeyInput.rightKey == true && Player.walkAn < 5) Player.walkAn += 1;
-				else Player.walkAn = 0;
 			}
-		}
 		stop();
 	}
 	
@@ -118,6 +113,22 @@ public class Geam extends Canvas implements Runnable {
 		
 		g.dispose();
 		bs.show();
+	}
+	public static int clamp(int var, int min, int max) {
+		if(var>=max && KeyInput.ground != true) {
+			KeyInput.ground = true;
+			return var=max;
+		}
+		if(var>=max) {
+			return var=max;
+		}
+		else if(var<=min) {
+			return var=min;
+		}
+		else {
+			KeyInput.ground = false;
+			return var;
+		}
 	}
 	
 	public static void main(String[] args) {

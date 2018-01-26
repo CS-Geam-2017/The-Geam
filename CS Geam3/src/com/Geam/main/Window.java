@@ -27,6 +27,7 @@ public class Window extends Canvas{
 		frame.setLocationRelativeTo(null);
 		frame.add((Component) geam);
 		frame.setVisible(true);
+		frame.requestFocus();
 		((Geam) geam).start();
 	}
 }
