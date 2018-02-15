@@ -11,11 +11,13 @@ public abstract class GeamObject {
 	protected int x, y;
 	protected ID id;
 	protected int speedX, speedY;
+	protected String text;
 	
-	public GeamObject(int x, int y, ID id){
+	public GeamObject(int x, int y, ID id, String text){
 		this.x = x;
 		this.y = y;
 		this.id = id;
+		this.text = text;
 	}
 	
 	public abstract void tick();
@@ -26,6 +28,12 @@ public abstract class GeamObject {
 	}
 	public void setY(int y){
 		this.y = y;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+	public String getText() {
+		return text;
 	}
 	public int getx(){
 		return x;

@@ -38,15 +38,24 @@ public class Geam extends Canvas implements Runnable {
 		
 		
 		r = new Random();
+		int[] q = {0};
+		int[] a = {3};
+		int[] b = {1};
+		int[] c = {2};
+		int[] d = {4};
 		
-		//for(int i = 0; i < 1; i++){
-
-			//handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player));
-			//handler.addObject(new Player((WIDTH),(HEIGHT), ID.Player));
-		//}
+		myText Q = new myText(500,100,ID.Q,"",q);
+		myText A = new myText(500,200,ID.A,"",a);
+		myText B = new myText(500,200,ID.B,"",b);
+		myText C = new myText(500,200,ID.C,"",c);
+		myText D = new myText(500,200,ID.D,"",d);
 		
-		//handler.addObject(new Player(100, 100, ID.Player));
-		//handler.addObject(new Player(100+64, 100, ID.Player2));
+		handler.addObject(Q);
+		handler.addObject(A);
+		handler.addObject(B);
+		handler.addObject(C);
+		handler.addObject(D);
+		
 	}
 	
 	public synchronized void start() {
@@ -100,6 +109,17 @@ public class Geam extends Canvas implements Runnable {
 	
 	private void tick() {
 		handler.tick();
+		GeamObject tempObject;
+		for(int i = 0; i<handler.object.size(); i++) {
+			tempObject = handler.object.get(i);
+			if(KeyInput.Question == 1) {
+				if(tempObject.id==ID.Q) {
+					tempObject.setText("Hamlet has come back to and see your mother married to your uncle how do you react?");
+				}
+			}
+			
+		}
+		
 	}
 	
 	private void render() {
@@ -111,50 +131,7 @@ public class Geam extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.darkGray);
-		g.fillRect(0,  0, WIDTH, HEIGHT);
-		g.setColor(Color.magenta);
-		g.drawLine(685, 513, 685, 513);
-		boolean reached2 = false;
-		double c = 0;
-		for (double a = 0; a<=40; a+=.005) {
-			g.setColor(Color.darkGray);
-			g.fillRect(0,  0, WIDTH, HEIGHT);
-			double t = 0;
-			boolean reached =false;
-			for (double b = 0; b<=2*3.14; b+=0.01) {
-				Color mycolor;
-				if (t<=2*3.14 && reached == false) {
-					mycolor = new Color((int)t*39,(int)(c*6),244);
-					t+=0.02;
-				}
-				else {
-					reached = true;
-					t-=0.02;
-					mycolor = new Color((int)t*39,(int)(c*6),244);
-				}
-				g.setColor(mycolor);
-				g.drawLine(685, 400, (int)(100*(Math.cos(a-(b))-Math.sin(a-b)))+685, (int)(100*(Math.sin(a-4*b)+Math.cos(a-b))+400));
-			}
-			if (c<=40 && reached2 == false) {
-				c += 0.05;
-			}
-			else if ((int)(c*6)==0) {
-				reached2 = false;
-			}
-			else {
-				reached2 = true;
-				c-= 0.05;
-			}
-			frames++;
-			bs.show();
-			try {
-				thread.sleep(0);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		frames++;
 		handler.render(g);
 		
 		g.dispose();
