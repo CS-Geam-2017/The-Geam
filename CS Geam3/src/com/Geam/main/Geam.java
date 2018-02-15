@@ -38,24 +38,20 @@ public class Geam extends Canvas implements Runnable {
 		
 		
 		r = new Random();
-		int[] q = {0};
-		int[] a = {3};
-		int[] b = {1};
-		int[] c = {2};
-		int[] d = {4};
 		
-		myText Q = new myText(500,100,ID.Q,"",q);
-		myText A = new myText(500,200,ID.A,"",a);
-		myText B = new myText(500,200,ID.B,"",b);
-		myText C = new myText(500,200,ID.C,"",c);
-		myText D = new myText(500,200,ID.D,"",d);
+		myText Q = new myText(20,50,ID.Q,"");
+		myText A = new myText(500,200,ID.A,"");
+		myText B = new myText(500,300,ID.B,"");
+		myText C = new myText(500,400,ID.C,"");
+		myText D = new myText(500,500,ID.D,"");
+		myText R = new myText(20,600,ID.R,"");
 		
 		handler.addObject(Q);
 		handler.addObject(A);
 		handler.addObject(B);
 		handler.addObject(C);
 		handler.addObject(D);
-		
+		handler.addObject(R);
 	}
 	
 	public synchronized void start() {
@@ -116,6 +112,37 @@ public class Geam extends Canvas implements Runnable {
 				if(tempObject.id==ID.Q) {
 					tempObject.setText("Hamlet has come back to and see your mother married to your uncle how do you react?");
 				}
+				else if(tempObject.id==ID.A) {
+					tempObject.setText("A: Kill Claudius on the Spot.");
+				}
+				else if(tempObject.id==ID.B) {
+					tempObject.setText("B: Say nothing");
+				}
+				else if(tempObject.id==ID.C) {
+					tempObject.setText("C: Leave Denmark");
+				}
+				else if(tempObject.id==ID.D) {
+					tempObject.setText("D: Continue Being a Prince");
+				}
+				
+			}
+			else if(KeyInput.Question == 2) {
+				if(tempObject.id==ID.Q) {
+					tempObject.setText("The Ghost of King Hamlet has come to Hamlet saying that he was murdered and his son needs to avenge his death. What should Hamlet do?");
+				}
+				else if(tempObject.id==ID.A) {
+					tempObject.setText("A: Scream and Run Around Frantically");
+				}
+				else if(tempObject.id==ID.B) {
+					tempObject.setText("B: Try to Ghostbuster it");
+				}
+				else if(tempObject.id==ID.C) {
+					tempObject.setText("C: Agree to the Ghost’s Terms");
+				}
+				else if(tempObject.id==ID.D) {
+					tempObject.setText("D: NOPE");
+				}
+				
 			}
 			
 		}
@@ -130,7 +157,8 @@ public class Geam extends Canvas implements Runnable {
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-		
+		g.setColor(Color.gray);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
 		frames++;
 		handler.render(g);
 		

@@ -10,8 +10,9 @@ public abstract class GeamObject {
 
 	protected int x, y;
 	protected ID id;
-	protected int speedX, speedY;
 	protected String text;
+	protected int Sp;
+	protected int Sp2;
 	
 	public GeamObject(int x, int y, ID id, String text){
 		this.x = x;
@@ -31,6 +32,17 @@ public abstract class GeamObject {
 	}
 	public void setText(String text) {
 		this.text = text;
+		if(text.length()>83) {
+			Sp=0;
+			for(int i = 0; i<text.length(); i++) {
+				if(text.charAt(i)==' '&&i<83) {
+					Sp=i;
+				}
+				else if(text.charAt(i)==' '&&i<166) {
+					Sp2=i;
+				}
+			}
+		}
 	}
 	public String getText() {
 		return text;
@@ -46,18 +58,6 @@ public abstract class GeamObject {
 	}
 	public ID getID(){
 		return id;
-	}
-	public void setSpeedX(int speedX){
-		this.speedX = speedX;
-	}
-	public void setSpeedY(int speedY){
-		this.speedY = speedY;
-	}
-	public int getspeedX(){
-		return speedX;
-	}
-	public int getSpeedY(){
-		return speedY;
 	}
 	
 }
