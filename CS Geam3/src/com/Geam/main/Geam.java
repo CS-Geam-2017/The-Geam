@@ -15,7 +15,7 @@ public class Geam extends Canvas implements Runnable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final int WIDTH = 1370, HEIGHT = WIDTH / 12*9;
+	public static final int WIDTH = 1370, HEIGHT = 770;
 	//Reg - WIDTH = 640, HEIGHT = WIDTH / 12*9
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
 	
@@ -113,7 +113,7 @@ public class Geam extends Canvas implements Runnable {
 					tempObject.setText("Hamlet has come back to and see your mother married to your uncle how do you react?");
 				}
 				else if(tempObject.id==ID.A) {
-					tempObject.setText("A: Kill Claudius on the Spot.");
+					tempObject.setText("A: Kill Claudius on the Spot");
 				}
 				else if(tempObject.id==ID.B) {
 					tempObject.setText("B: Say nothing");
@@ -144,6 +144,60 @@ public class Geam extends Canvas implements Runnable {
 				}
 				
 			}
+			else if(KeyInput.Question == 3) {
+				if(tempObject.id==ID.Q) {
+					tempObject.setText("Hamlet has decided to somehow prove that Claudius killed his father. How should he do it?");
+				}
+				else if(tempObject.id==ID.A) {
+					tempObject.setText("A: Devise a play");
+				}
+				else if(tempObject.id==ID.B) {
+					tempObject.setText("B: Who Cares");
+				}
+				else if(tempObject.id==ID.C) {
+					tempObject.setText("C: Hire Someone");
+				}
+				else if(tempObject.id==ID.D) {
+					tempObject.setText("D: Naptime");
+				}
+				
+			}
+			else if(KeyInput.Question == 4) {
+				if(tempObject.id==ID.Q) {
+					tempObject.setText("The arrival of actors and players have arrived what should Hamlet do?");
+				}
+				else if(tempObject.id==ID.A) {
+					tempObject.setText("A: Send Them Away");
+				}
+				else if(tempObject.id==ID.B) {
+					tempObject.setText("B: Lock them up");
+				}
+				else if(tempObject.id==ID.C) {
+					tempObject.setText("C: Stab them");
+				}
+				else if(tempObject.id==ID.D) {
+					tempObject.setText("D: Introduce them to the Play");
+				}
+				
+			}
+			else if(KeyInput.Question == 5) {
+				if(tempObject.id==ID.Q) {
+					tempObject.setText("Hamlet has come into Gertrude's room and she starts to interrogate him and it seems Claudius is beside her. What should he do?");
+				}
+				else if(tempObject.id==ID.A) {
+					tempObject.setText("A: Pretend To Be in Love");
+				}
+				else if(tempObject.id==ID.B) {
+					tempObject.setText("B: THIS IS HIS CHANCE");
+				}
+				else if(tempObject.id==ID.C) {
+					tempObject.setText("C: Kill them Both");
+				}
+				else if(tempObject.id==ID.D) {
+					tempObject.setText("D: Jump");
+				}
+				
+			}
 			
 		}
 		
@@ -157,7 +211,7 @@ public class Geam extends Canvas implements Runnable {
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-		g.setColor(Color.gray);
+		g.setColor(Color.white);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		frames++;
 		handler.render(g);

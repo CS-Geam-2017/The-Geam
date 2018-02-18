@@ -16,8 +16,7 @@ public class myText extends GeamObject {
 	public void render(Graphics g) {
 		g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
 		g.setColor(Color.BLACK);
-		System.out.println(text.length());
-		if(text.length()>83) {
+		if(text.length()>83 && text.length()<166) {
 			g.drawString(text.substring(0, Sp), x, y);
 			g.drawString(text.substring(Sp+1), x, y+50);
 		}
