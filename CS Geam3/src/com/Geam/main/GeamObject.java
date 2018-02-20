@@ -32,7 +32,16 @@ public abstract class GeamObject {
 	}
 	public void setText(String text) {
 		this.text = text;
-		if(text.length()>83) {
+		if(text.length()>30&&id==ID.act5) {
+			Sp=0;
+			for(int i = 0; i<text.length(); i++) {
+				if(text.charAt(i)==' '&&i<30) {
+					Sp=i;
+					//System.out.println(Sp);
+				}
+			}
+		}
+		else if(text.length()>83) {
 			Sp=0;
 			for(int i = 0; i<text.length(); i++) {
 				if(text.charAt(i)==' '&&i<83) {
@@ -43,6 +52,7 @@ public abstract class GeamObject {
 				}
 			}
 		}
+		
 	}
 	public String getText() {
 		return text;

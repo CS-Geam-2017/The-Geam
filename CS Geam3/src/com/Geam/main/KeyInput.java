@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter {
 	public static int Question = 1;
 	public static boolean right = false;
+	public static int act5 = 1;
 	private Handler handler;
 	
 	public KeyInput(Handler handler){
@@ -80,24 +81,80 @@ public class KeyInput extends KeyAdapter {
 				}
 				else if(Question == 5) {
 					if(key == KeyEvent.VK_A) {
-						tempObject.setText("(INCORRECT) Hamlet says that he loves Ophelia dearly and wish to marry her and later they have a very hard marriage and Ophelia ends up killing herself from marital neglect ");
+						tempObject.setText("(INCORRECT) Hamlet says that he loves Ophelia dearly and wishes to marry her and later they have a very hard marriage and Ophelia ends up killing herself from marital neglect ");
 					}
 					else if(key == KeyEvent.VK_B) {
 						tempObject.setText("(CORRECT) Hamlet thrusts his sword to try and kill claudius but when the curtains are pulled back it is Polonius");
+						right = true;
 					}
 					else if(key == KeyEvent.VK_C) {
 						tempObject.setText("(INCORRECT) Hamlet Stabs both Polonius and Gertrude and hides their bodies");
 					}
 					else if(key == KeyEvent.VK_D) {
 						tempObject.setText("(INCORRECT) Hamlet has been found that he couldn’t keep up the charade and jumps from the window");
-						right = true;
 					}
 				}
-				if(right&& key==KeyEvent.VK_ENTER) {
+				else if(Question == 6) {
+					if(key == KeyEvent.VK_A) {
+						tempObject.setText("(INCORRECT) Hamlet Shouts nonsense that the court can’t understand keeping the charde");
+					}
+					else if(key == KeyEvent.VK_B) {
+						tempObject.setText("(CORRECT) Hamlet tells the court where the body is and you are instantly sent to England");
+						right = true;
+					}
+					else if(key == KeyEvent.VK_C) {
+						tempObject.setText("(INCORRECT) Hamlet is Stabbed in the scuffle");
+					}
+					else if(key == KeyEvent.VK_D) {
+						tempObject.setText("(INCORRECT) Before the guards came Hamlet jumps from the window to his brutal demise");
+					}
+				}
+				else if(Question == 7 && act5 == 1) {
+					if(key == KeyEvent.VK_A) {
+						tempObject.setText("(CORRECT) Hamlet gets 2 hits of laetes causing Gertrude to drink to him and end up drinking the poisoned cup");
+						right = true;
+					}
+					else if(key == KeyEvent.VK_B) {
+						tempObject.setText("(INCORRECT)  Hamlet gets a hit on Laertes and then drinks from the cup and notices something funny about the drink then starts to feel woozy then falls to the ground");
+					}
+					else if(key == KeyEvent.VK_C) {
+						tempObject.setText("(INCORRECT) Hamlet is struck with the poisoned sword of Laetes to early and feels woozy only to collapse and die");
+					}
+					else if(key == KeyEvent.VK_D) {
+						tempObject.setText("(INCORRECT) Hamlet chooses not to duel and goes to England and is murdered in an alleyway and is never seen again");
+					}
+				}
+				else if(Question == 7 && act5 == 2) {
+					if(key == KeyEvent.VK_A) {
+						tempObject.setText("(CORRECT) ");
+						right = true;
+					}
+					else if(key == KeyEvent.VK_B) {
+						tempObject.setText("(INCORRECT) ");
+					}
+					else if(key == KeyEvent.VK_C) {
+						tempObject.setText("(INCORRECT) ");
+					}
+					else if(key == KeyEvent.VK_D) {
+						tempObject.setText("(INCORRECT) ");
+					}
+				}
+				if(right&& key==KeyEvent.VK_ENTER && Question<7) {
 					Question++;
 					right=false;
 					tempObject.setText("");
 				}
+				else if(right&& key==KeyEvent.VK_ENTER && Question==7 && act5<2) {
+					act5++;
+					tempObject.setText("");
+					right=false;
+				}
+				else if(right&& key==KeyEvent.VK_ENTER && Question==7 && act5==2) {
+					Question++;
+					tempObject.setText("");
+					right = false;
+				}
+				
 			}
 		}
 		

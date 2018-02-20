@@ -45,6 +45,7 @@ public class Geam extends Canvas implements Runnable {
 		myText C = new myText(500,400,ID.C,"");
 		myText D = new myText(500,500,ID.D,"");
 		myText R = new myText(20,600,ID.R,"");
+		myText act5 = new myText(20,200,ID.act5,"");
 		
 		handler.addObject(Q);
 		handler.addObject(A);
@@ -52,6 +53,7 @@ public class Geam extends Canvas implements Runnable {
 		handler.addObject(C);
 		handler.addObject(D);
 		handler.addObject(R);
+		handler.addObject(act5);
 	}
 	
 	public synchronized void start() {
@@ -198,6 +200,71 @@ public class Geam extends Canvas implements Runnable {
 				}
 				
 			}
+			else if(KeyInput.Question == 6) {
+				if(tempObject.id==ID.Q) {
+					tempObject.setText("Hamlet is captured and is being forced to tell where Polonius’ body is hidden. What should he do?");
+				}
+				else if(tempObject.id==ID.A) {
+					tempObject.setText("A: Avoid It");
+				}
+				else if(tempObject.id==ID.B) {
+					tempObject.setText("B: Just Say");
+				}
+				else if(tempObject.id==ID.C) {
+					tempObject.setText("C: Try and Fight");
+				}
+				else if(tempObject.id==ID.D) {
+					tempObject.setText("D: Suicide");
+				}
+				
+			}
+			else if(KeyInput.Question == 7 && KeyInput.act5==1) {
+				if(tempObject.id==ID.Q) {
+					tempObject.setText("Laertes and Hamlet are to fight how should Hamlet procede?");
+				}
+				else if(tempObject.id==ID.A) {
+					tempObject.setText("A: Play to two hits");
+				}
+				else if(tempObject.id==ID.B) {
+					tempObject.setText("B: Play to one hit and drink");
+				}
+				else if(tempObject.id==ID.C) {
+					tempObject.setText("C: Let Laertes get the hit");
+				}
+				else if(tempObject.id==ID.D) {
+					tempObject.setText("D: Just go to England");
+				}
+				else if(tempObject.id==ID.act5) {
+					tempObject.setText("To win, you must answer both parts of this question correctly");
+				}
+				
+			}
+			else if(KeyInput.Question == 7 && KeyInput.act5==2) {
+				if(tempObject.id==ID.Q) {
+					tempObject.setText("Laertes and Hamlet fight once again and Hamlet is stabbed with Laertes poisoned sword how should Hamlet react?");
+				}
+				else if(tempObject.id==ID.A) {
+					tempObject.setText("A: Take the Sword and Poke Back");
+				}
+				else if(tempObject.id==ID.B) {
+					tempObject.setText("B: Lay there and die");
+				}
+				else if(tempObject.id==ID.C) {
+					tempObject.setText("C: Stab Claudius");
+				}
+				else if(tempObject.id==ID.D) {
+					tempObject.setText("D: Stab Laertes");
+				}
+				
+			}
+			else if(KeyInput.Question == 8) {
+				tempObject.setText("");
+				if(tempObject.id==ID.A) {
+					tempObject.setX(20);
+					tempObject.setText("The deed is done and Claudius is killed in the end those who sought out revenge are no more, those who chose to hide from their crimes are but not, Hamlet gives the land to Fortinbras, Horatio goes and tells the story of his friend, Denmark is a bloodstain and this Story is done.");
+				}
+			}
+			
 			
 		}
 		

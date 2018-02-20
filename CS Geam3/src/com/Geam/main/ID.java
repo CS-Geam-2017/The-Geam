@@ -6,6 +6,6 @@ public enum ID {
 	A(),
 	B(),
 	C(),
-	D(), R;
+	D(), R,act5;
 
 }
