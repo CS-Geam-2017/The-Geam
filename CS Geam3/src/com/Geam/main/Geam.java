@@ -2,6 +2,7 @@ package com.Geam.main;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
@@ -26,6 +27,8 @@ public class Geam extends Canvas implements Runnable {
 	private Random r;
 	private Handler handler;
 	private int frames;
+	public static boolean end = false;
+	public static boolean title = true;
 	
 	
 	public Geam() {
@@ -261,6 +264,7 @@ public class Geam extends Canvas implements Runnable {
 				tempObject.setText("");
 				if(tempObject.id==ID.A) {
 					tempObject.setX(20);
+					end = true;
 					tempObject.setText("The deed is done and Claudius is killed in the end those who sought out revenge are no more, those who chose to hide from their crimes are but not, Hamlet gives the land to Fortinbras, Horatio goes and tells the story of his friend, Denmark is a bloodstain and this Story is done.");
 				}
 			}
@@ -281,8 +285,32 @@ public class Geam extends Canvas implements Runnable {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		frames++;
-		handler.render(g);
+		if(title) {
+			KeyInput.check = true;
+			g.setColor(Color.black);
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 90));
+			g.drawString("Hamlet Game", 370, 100);
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+			g.drawString("Code by: Jake Lockey", 470, 200);
+			g.drawString("Questions By: Jackson Boster", 420, 250);
+			g.drawString("To answer a question, type the letter you want", 320, 380);
+			g.drawString("Once you have have correct answer, press space to proceed", 230, 430);
+			g.drawString("Enter to Start", 530, 600);
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+			g.drawString("You might need to click the window for it to work", 460, 680);
+			
+		}
+		else {
+			g.setColor(Color.black);
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+			handler.render(g);
+		}
 		
+		if(end&&KeyInput.Question==8) {
+			g.setColor(Color.black);
+			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+			g.drawString("Enter to Restart", 500, 500);
+		}
 		g.dispose();
 		bs.show();
 	}

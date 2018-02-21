@@ -7,6 +7,7 @@ public class KeyInput extends KeyAdapter {
 	public static int Question = 1;
 	public static boolean right = false;
 	public static int act5 = 1;
+	public static boolean check = false;
 	private Handler handler;
 	
 	public KeyInput(Handler handler){
@@ -96,11 +97,11 @@ public class KeyInput extends KeyAdapter {
 				}
 				else if(Question == 6) {
 					if(key == KeyEvent.VK_A) {
-						tempObject.setText("(INCORRECT) Hamlet Shouts nonsense that the court can’t understand keeping the charde");
+						tempObject.setText("(CORRECT) Hamlet Shouts nonsense that the court can’t understand keeping the charde");
+						right = true;right = true;
 					}
 					else if(key == KeyEvent.VK_B) {
-						tempObject.setText("(CORRECT) Hamlet tells the court where the body is and you are instantly sent to England");
-						right = true;
+						tempObject.setText("(INCORRECT) Hamlet tells the court where the body is and you are instantly sent to England");
 					}
 					else if(key == KeyEvent.VK_C) {
 						tempObject.setText("(INCORRECT) Hamlet is Stabbed in the scuffle");
@@ -126,17 +127,20 @@ public class KeyInput extends KeyAdapter {
 				}
 				else if(Question == 7 && act5 == 2) {
 					if(key == KeyEvent.VK_A) {
-						tempObject.setText("(CORRECT) ");
+						tempObject.setText("(CORRECT) Hamlet stabs Laertes with his own sword then proceeds to thrust it into Claudius as well");
 						right = true;
 					}
 					else if(key == KeyEvent.VK_B) {
-						tempObject.setText("(INCORRECT) ");
+						tempObject.setText("(INCORRECT) Hamlet just faces death and chooses to succumb to the poison");
+						act5 = 1;
 					}
 					else if(key == KeyEvent.VK_C) {
-						tempObject.setText("(INCORRECT) ");
+						tempObject.setText("(INCORRECT) As Hamlet thrusts the sword into Claudius, Laertes comes up and stabs Hamlet in the back again (Probably could have been slightly more efficient)");
+						act5 = 1;
 					}
 					else if(key == KeyEvent.VK_D) {
-						tempObject.setText("(INCORRECT) ");
+						tempObject.setText("(INCORRECT) As Hamlet uses his own sword to stab Laertes it seems to be only a flesh wound and Hamlet then dies on the ground");
+						act5 = 1;
 					}
 				}
 				if(right&& key==KeyEvent.VK_ENTER && Question<7) {
@@ -154,13 +158,30 @@ public class KeyInput extends KeyAdapter {
 					tempObject.setText("");
 					right = false;
 				}
+				else if(key==KeyEvent.VK_ENTER && Question==8 && Geam.end) {
+					tempObject.setText("");
+					right = false;
+				}
+				else if(Geam.title && key==KeyEvent.VK_ENTER && check) {
+					Geam.title = false;
+					Question =1;
+					act5 = 1;
+					right = false;
+				}
 				
 			}
+			else if(tempObject.id==ID.A) {
+				if(key==KeyEvent.VK_ENTER && Question==8 && Geam.end) {
+					tempObject.setX(500);
+					Geam.title = true;
+					Geam.end = false;
+					Question =1;
+					act5 = 1;
+					check = false;
+				}
+			}
 		}
-		
-		
 	}
-
 	
 
 	public void keyReleased(KeyEvent e){
