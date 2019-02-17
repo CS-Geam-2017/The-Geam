@@ -17,13 +17,14 @@ public class Geam extends Canvas implements Runnable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final int WIDTH = 1366, HEIGHT = 705;
+	public static int WIDTH = 1000;
 	//Reg - WIDTH = 640, HEIGHT = WIDTH / 12*9
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
+
+	public static int HEIGHT = 705;
 	
 	public static boolean start = false;
 	public static boolean paused = false;
-	public static int score = 0;
 	
 	private Thread thread;
 	private boolean running = false;
@@ -39,23 +40,47 @@ public class Geam extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		// ^ Needs to know what handler is before game is created
-		new Window(WIDTH, HEIGHT, "Geam", this);
+		new Window(WIDTH+15, HEIGHT+38, "Geam", this);
 		
 		
 		r = new Random();
 		
-		//for(int i = 0; i < 1; i++){
-
-			//handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player));
-			//handler.addObject(new Player((WIDTH),(HEIGHT), ID.Player));
-		//}
+		int balls = 30;
+		int rad = 75;
+		double elastic = .9;
+		double friction = 1;
+		double gravity = 0.01;
+		//handler.addObject(new BasicEnemy(200, 100, ID.BasicEnemy, handler,rad, elastic,friction));
+		//handler.addObject(new BasicEnemy(200, 150, ID.BasicEnemy, handler,rad, elastic,friction));
 		
-		handler.addObject(new Player(100, 100, ID.Player, handler));
-		handler.addObject(new Player2(100+64, 100, ID.Player2, handler));
-		handler.addObject(new Tracker(WIDTH/2, HEIGHT/2, ID.Tracker, handler));
-		handler.addObject(new RangeEn(WIDTH-300, HEIGHT-150, ID.RangeEn, handler));
-		for (int i = 0 ; i < 15 ; i++) {
-			handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
+		
+		for (int i = 0 ; i < balls ; i++) {
+			boolean flag = true;
+			while(flag) {
+				int x = r.nextInt(WIDTH-(rad+10))-(0);
+				int y = r.nextInt((HEIGHT)-(rad+10))+(HEIGHT*0);
+				if(Handler.object.size()>0) {
+					boolean flag1 = false;
+					for(int j = 0; j < Handler.object.size(); j++){
+						GeamObject tempObject = Handler.object.get(j);
+						if(tempObject.getID() == ID.BasicEnemy){
+							double xDis = (x+(rad/2))-(tempObject.getBounds().x+(rad/2));
+							double yDis = (y+(rad/2))-(tempObject.getBounds().y+(rad/2));
+							if(((xDis*xDis)+(yDis*yDis))<=(rad*rad) || (x==tempObject.x && y==tempObject.y)) {
+								flag1=true;;
+							}
+						}
+					}
+					if(!flag1) {
+						handler.addObject(new BasicEnemy(x, y, ID.BasicEnemy, handler,rad, elastic, friction, gravity));
+						flag=false;
+					}
+				}
+				else {
+					handler.addObject(new BasicEnemy(x, y, ID.BasicEnemy, handler,rad, elastic, friction, gravity));
+					flag=false;
+				}
+			}
 		}
 	}
 	
@@ -86,13 +111,15 @@ public class Geam extends Canvas implements Runnable {
 		long timer2 = System.currentTimeMillis();
 		int frames = 0;
 		while(running){
+			
+			
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-			while(delta >= 1) {
+			//while(delta >= 1) {
 				tick();
-				delta --;
-			}
+				//delta --;
+			//}
 			if(running)
 				render();
 			frames++;
@@ -102,25 +129,21 @@ public class Geam extends Canvas implements Runnable {
 				System.out.println("FPS:"+frames);
 				frames = 0;
 				
-				if (HUD.HEALTH>0&&start==true&&paused==false){
-					handler.addObject(new BasicEnemy(r.nextInt(WIDTH-50), r.nextInt(HEIGHT-50), ID.BasicEnemy, handler));
-					score += 1;
-				}
+			}
+			try {
+				thread.sleep(0);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
-			if(System.currentTimeMillis() - timer > 100){
-				timer += 100;
-				if (KeyInput.rightKey == true && Player.walkAn < 5) Player.walkAn += 1;
-				else Player.walkAn = 0;
-			}
 		}
 		stop();
 	}
 	
 	private void tick() {
-		if (start == true && paused == false && HUD.HEALTH != 0){
+		if (true && paused == false){
 			handler.tick();
-			HUD.tick();
 		}
 	}
 	
@@ -140,33 +163,23 @@ public class Geam extends Canvas implements Runnable {
 			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
 			g.drawString("Paused", 600, HEIGHT/2);
 		}
-		if (start == false){
-			g.setColor(Color.WHITE);
-			g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
-			g.drawString("Press space to start", 600, HEIGHT/2);
-		}
-		if (start == true) {
+		//if (start == false){
+		//	g.setColor(Color.WHITE);
+		//	g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+		//	g.drawString("Press space to start", 600, HEIGHT/2);
+		//}
+		if (true) {
 			handler.render(g);
-			
-			HUD.render(g);
-			
-		}
-		if (HUD.HEALTH == 0){
-			g.setColor(Color.WHITE);
-			g.setFont(new Font("Impact", Font.BOLD, 100));
-			g.drawString("GAME OVER", 400, 400);
-			g.setFont(new Font("Comic Sans MS",Font.BOLD , 30));
-			g.drawString("Space to Restart", 540, 500);
 		}
 		g.dispose();
 		bs.show();
 	}	
 	
 	public static int clamp(int var, int min, int max){
-		if (var>=max){
+		if (var>=max-10){
 			return var = max;
 		}
-		else if (var<=min){
+		else if (var<=min+10){
 			return var = min;
 		}
 		else {
@@ -177,7 +190,6 @@ public class Geam extends Canvas implements Runnable {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		score = 0;
 		new Geam();
 	}
 

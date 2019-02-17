@@ -10,10 +10,10 @@ import java.awt.Rectangle;
  */
 public abstract class GeamObject {
 
-	protected int x;
-	protected int y;
+	protected double x;
+	protected double y;
 	protected ID id;
-	protected int speedX, speedY;
+	protected double speedX, speedY;
 	
 	public GeamObject(int x, int y, ID id){
 		this.x = x;
@@ -31,10 +31,10 @@ public abstract class GeamObject {
 	public void setY(int y){
 		this.y = y;
 	}
-	public int getX(){
+	public double getX(){
 		return x;
 	}
-	public int getY(){
+	public double getY(){
 		return y;
 	}
 	public void setId(ID id){
@@ -49,10 +49,10 @@ public abstract class GeamObject {
 	public void setSpeedY(int speedY){
 		this.speedY = speedY;
 	}
-	public int getSpeedX(){
+	public double getSpeedX(){
 		return speedX;
 	}
-	public int getSpeedY(){
+	public double getSpeedY(){
 		return speedY;
 	}
 	
