@@ -21,7 +21,7 @@ public class Geam extends Canvas implements Runnable {
 	//Reg - WIDTH = 640, HEIGHT = WIDTH / 12*9
 	//Full Screen - WIDTH = 1370, HEIGHT = WIDTH / 12*12
 
-	public static int HEIGHT = 705;
+	public static int HEIGHT = 690;
 	
 	public static boolean start = false;
 	public static boolean paused = false;
@@ -45,13 +45,45 @@ public class Geam extends Canvas implements Runnable {
 		
 		r = new Random();
 		
-		int balls = 30;
-		int rad = 75;
-		double elastic = .9;
+		int balls = 150;
+		int rad = 15;
+		//elastic is 1    inelastic is .5
+		double elastic = .95;
 		double friction = 1;
-		double gravity = 0.01;
-		//handler.addObject(new BasicEnemy(200, 100, ID.BasicEnemy, handler,rad, elastic,friction));
-		//handler.addObject(new BasicEnemy(200, 150, ID.BasicEnemy, handler,rad, elastic,friction));
+		double gravity = 0.005;
+		
+		//handler.addObject(new BasicEnemy(70, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, .1, 0));
+		//handler.addObject(new BasicEnemy(71, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		
+		//newtons cradel
+		/*handler.addObject(new BasicEnemy(70, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 1, 0));
+		handler.addObject(new BasicEnemy(100, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(130, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(160, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(190, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(220, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(250, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(280, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(310, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(340, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(370, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(400, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(430, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(460, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(490, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(520, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(550, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(580, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(610, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(640, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(670, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(700, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(730, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(760, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(790, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(820, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(850, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));
+		handler.addObject(new BasicEnemy(880, 350, ID.BasicEnemy, handler,rad, elastic,friction, gravity, 0, 0));*/
 		
 		
 		for (int i = 0 ; i < balls ; i++) {
@@ -66,7 +98,7 @@ public class Geam extends Canvas implements Runnable {
 						if(tempObject.getID() == ID.BasicEnemy){
 							double xDis = (x+(rad/2))-(tempObject.getBounds().x+(rad/2));
 							double yDis = (y+(rad/2))-(tempObject.getBounds().y+(rad/2));
-							if(((xDis*xDis)+(yDis*yDis))<=(rad*rad) || (x==tempObject.x && y==tempObject.y)) {
+							if((((xDis*xDis)+(yDis*yDis))<=(rad*rad)) || (x==tempObject.x && y==tempObject.y)) {
 								flag1=true;;
 							}
 						}
@@ -103,22 +135,22 @@ public class Geam extends Canvas implements Runnable {
 	public void run() {
 		this.requestFocus();
 		this.isMaximumSizeSet();
-		long lastTime= System.nanoTime();
-		double amountOfTicks = 60.0;
-		double ns = 1000000000 / amountOfTicks;
-		double delta = 0;
-		long timer = System.currentTimeMillis();
+		//long lastTime= System.nanoTime();
+		//double amountOfTicks = 60.0;
+		//double ns = 1000000000 / amountOfTicks;
+		//double delta = 0;
+		//long timer = System.currentTimeMillis();
 		long timer2 = System.currentTimeMillis();
 		int frames = 0;
 		while(running){
 			
 			
-			long now = System.nanoTime();
-			delta += (now - lastTime) / ns;
-			lastTime = now;
+			//long now = System.nanoTime();
+			//delta += (now - lastTime) / ns;
+			//lastTime = now;
 			//while(delta >= 1) {
 				tick();
-				//delta --;
+			//	delta -=1;
 			//}
 			if(running)
 				render();
